@@ -1,0 +1,219 @@
+{
+  "source": "/Users/jiwoo/git/pokemon-gen5-battle-prediction/data/datasets/stat_type_matchup_features/data/all_stat_type_matchup_features.parquet",
+  "source_sha256": "94ff036c208a8067335d574420c4ce1b60e7ab9c181a516afd8d01bbfe64b359",
+  "rows": 822419,
+  "columns": 371,
+  "strategy": "matchup",
+  "seed": 42,
+  "requested_ratios": {
+    "train": 0.7,
+    "validation": 0.15,
+    "test": 0.15
+  },
+  "group_definition": "formatid + 슬롯 순서를 무시한 양 팀 종 구성. 팀 순서도 무시.",
+  "same_team_means": "입력에서 관측 가능한 종 구성. 기술·아이템·특성 동일성을 뜻하지 않음.",
+  "group_count": 802137,
+  "repeated_pair_extra_rows": 20282,
+  "connected_component_audit": {
+    "gen5nu": {
+      "battles": 60873,
+      "components": 14032,
+      "largest_component_battles": 37457,
+      "largest_component_fraction": 0.6153302777914674
+    },
+    "gen5ou": {
+      "battles": 578042,
+      "components": 66796,
+      "largest_component_battles": 480767,
+      "largest_component_fraction": 0.8317163804706232
+    },
+    "gen5pu": {
+      "battles": 2114,
+      "components": 430,
+      "largest_component_battles": 983,
+      "largest_component_fraction": 0.4649952696310312
+    },
+    "gen5ru": {
+      "battles": 30324,
+      "components": 6604,
+      "largest_component_battles": 19201,
+      "largest_component_fraction": 0.6331948291782087
+    },
+    "gen5ubers": {
+      "battles": 81637,
+      "components": 11486,
+      "largest_component_battles": 62997,
+      "largest_component_fraction": 0.7716721584575621
+    },
+    "gen5uu": {
+      "battles": 68406,
+      "components": 12881,
+      "largest_component_battles": 47684,
+      "largest_component_fraction": 0.6970733561383504
+    },
+    "gen5zu": {
+      "battles": 1023,
+      "components": 189,
+      "largest_component_battles": 768,
+      "largest_component_fraction": 0.750733137829912
+    }
+  },
+  "outputs": {
+    "train": {
+      "rows": 575697,
+      "fraction": 0.7000044989232982,
+      "by_format": {
+        "gen5nu": {
+          "y0": 21513,
+          "y1": 21098,
+          "rows": 42611
+        },
+        "gen5ou": {
+          "y0": 205101,
+          "y1": 199529,
+          "rows": 404630
+        },
+        "gen5pu": {
+          "y0": 753,
+          "y1": 727,
+          "rows": 1480
+        },
+        "gen5ru": {
+          "y0": 10748,
+          "y1": 10479,
+          "rows": 21227
+        },
+        "gen5ubers": {
+          "y0": 27979,
+          "y1": 29168,
+          "rows": 57147
+        },
+        "gen5uu": {
+          "y0": 24008,
+          "y1": 23877,
+          "rows": 47885
+        },
+        "gen5zu": {
+          "y0": 362,
+          "y1": 355,
+          "rows": 717
+        }
+      },
+      "csv_body_sha256": "704442dcb6a0fb7248cb8e90326956b023251f9736a3771932f467bbd15e55a9"
+    },
+    "validation": {
+      "rows": 123361,
+      "fraction": 0.14999775053835088,
+      "by_format": {
+        "gen5nu": {
+          "y0": 4610,
+          "y1": 4521,
+          "rows": 9131
+        },
+        "gen5ou": {
+          "y0": 43950,
+          "y1": 42756,
+          "rows": 86706
+        },
+        "gen5pu": {
+          "y0": 161,
+          "y1": 156,
+          "rows": 317
+        },
+        "gen5ru": {
+          "y0": 2303,
+          "y1": 2245,
+          "rows": 4548
+        },
+        "gen5ubers": {
+          "y0": 5995,
+          "y1": 6250,
+          "rows": 12245
+        },
+        "gen5uu": {
+          "y0": 5145,
+          "y1": 5116,
+          "rows": 10261
+        },
+        "gen5zu": {
+          "y0": 77,
+          "y1": 76,
+          "rows": 153
+        }
+      },
+      "csv_body_sha256": "c9b4796967064b3d6c458a7c352c5c2670a41e284469277eada5908916a32430"
+    },
+    "test": {
+      "rows": 123361,
+      "fraction": 0.14999775053835088,
+      "by_format": {
+        "gen5nu": {
+          "y0": 4610,
+          "y1": 4521,
+          "rows": 9131
+        },
+        "gen5ou": {
+          "y0": 43950,
+          "y1": 42756,
+          "rows": 86706
+        },
+        "gen5pu": {
+          "y0": 161,
+          "y1": 156,
+          "rows": 317
+        },
+        "gen5ru": {
+          "y0": 2303,
+          "y1": 2246,
+          "rows": 4549
+        },
+        "gen5ubers": {
+          "y0": 5995,
+          "y1": 6250,
+          "rows": 12245
+        },
+        "gen5uu": {
+          "y0": 5144,
+          "y1": 5116,
+          "rows": 10260
+        },
+        "gen5zu": {
+          "y0": 77,
+          "y1": 76,
+          "rows": 153
+        }
+      },
+      "csv_body_sha256": "d6a7a94ab2d7c2c8598becf747a9dfa86476be0971a1e00a33aa79c8a6b0533e"
+    }
+  },
+  "cross_split_overlaps": {
+    "train__validation": {
+      "battle_id": 0,
+      "matchup_pairs": 0,
+      "observed_team_compositions": 87238
+    },
+    "train__test": {
+      "battle_id": 0,
+      "matchup_pairs": 0,
+      "observed_team_compositions": 87504
+    },
+    "validation__test": {
+      "battle_id": 0,
+      "matchup_pairs": 0,
+      "observed_team_compositions": 40598
+    }
+  },
+  "checks": {
+    "every_row_assigned_once": "passed",
+    "id_and_pair_groups_disjoint": "passed",
+    "saved_values_equal_source_selected_rows": "passed",
+    "csv_parquet_agree": "passed",
+    "source_file_unchanged": "passed"
+  },
+  "limitations": [
+    "학습·평가 및 인코딩·표준화는 아직 수행하지 않음",
+    "matchup 전략은 개별 팀이 분할 간 반복될 수 있어 새 팀 구성 일반화 평가가 아님",
+    "그룹 제약으로 요청 비율·승패 비율은 근사치",
+    "업로드 시각 기준 시간 분할은 아님"
+  ]
+}
