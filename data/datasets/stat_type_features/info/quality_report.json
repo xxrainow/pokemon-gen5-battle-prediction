@@ -1,0 +1,60 @@
+{
+  "source": "data/datasets/stat_features/data/all_stat_features.parquet",
+  "source_sha256": "c7a0a3925f7c2cdf64df4c761fb90a05f09198c02a3dcf39e85a14a5c16a53f8",
+  "output_rows": 822419,
+  "input_columns": 167,
+  "output_columns": 218,
+  "basic_feature_count": 108,
+  "stat_feature_count": 54,
+  "type_feature_count": 51,
+  "feature_count": 213,
+  "metadata_count": 4,
+  "target": "y",
+  "types": [
+    "Normal",
+    "Fire",
+    "Water",
+    "Electric",
+    "Grass",
+    "Ice",
+    "Fighting",
+    "Poison",
+    "Ground",
+    "Flying",
+    "Psychic",
+    "Bug",
+    "Rock",
+    "Ghost",
+    "Dragon",
+    "Dark",
+    "Steel"
+  ],
+  "formats": {
+    "gen5ubers": 81637,
+    "gen5ou": 578042,
+    "gen5uu": 68406,
+    "gen5ru": 30324,
+    "gen5nu": 60873,
+    "gen5pu": 2114,
+    "gen5zu": 1023
+  },
+  "independently_checked_rows": 102,
+  "sample_seed": 0,
+  "csv_body_sha256": "dc3bbf09d960943bfec9cf77992cafb9bccf6108dccf041f4efcb36f66594c12",
+  "checks": {
+    "all_original_167_columns_and_row_order_preserved": "passed",
+    "all_type_count_ranges_and_differences": "passed",
+    "all_single_and_dual_type_totals": "passed",
+    "independent_sample_calculation": "passed",
+    "slot_order_invariance": "passed",
+    "team_swap_sign_check": "passed",
+    "metadata_and_target_not_used": "passed",
+    "full_csv_parquet_roundtrip": "passed",
+    "source_file_unchanged": "passed"
+  },
+  "limitations": [
+    "입력 데이터의 파싱·도감 정확성을 새로 검증하지 않음",
+    "방어 상성 피처 미포함",
+    "데이터 분할·모델 학습·평가 미실시"
+  ]
+}

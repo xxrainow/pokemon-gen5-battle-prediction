@@ -2,7 +2,7 @@
 
 준비: python -m pip install pyarrow
 실행: python preprocessing/build_stat_sample.py
-원본 기본 표는 수정하지 않는다. 전체 경기 적용은 이 샘플 확인 뒤 진행한다.
+원본 기본 표는 수정하지 않는다. 전체 경기 적용 코드는 build_stat_features.py다.
 """
 
 import argparse
@@ -19,6 +19,16 @@ import pyarrow.parquet as pq
 STATS = ("hp", "atk", "def", "spa", "spd", "spe")
 SUMMARY = ("mean", "max", "std")
 META = ("battle_id", "formatid", "uploadtime", "winner", "y")
+
+
+def feature_definitions():
+    """샘플과 전체 데이터에서 사용하는 동일한 54개 피처 정의."""
+    formulas = {"mean": "sum(x1..x6) / 6", "max": "max(x1..x6)",
+                "std": "sqrt(sum((xi - mean)^2) / 6)"}
+    return [{"name": f"{side}_{stat}_{summary}", "stat": stat, "summary": summary,
+             "formula": formulas[summary] if side != "diff" else
+             f"p1_{stat}_{summary} - p2_{stat}_{summary}"}
+            for side in ("p1", "p2", "diff") for stat in STATS for summary in SUMMARY]
 
 
 def compute_features(row):
@@ -104,16 +114,7 @@ def main():
     assert all(exported[k] == str(v) for k, v in output_row.items())
     checks["parquet_and_csv_roundtrip"] = "passed"
 
-    definitions = []
-    formulas = {"mean": "sum(x1..x6) / 6", "max": "max(x1..x6)",
-                "std": "sqrt(sum((xi - mean)^2) / 6)"}
-    for side in ("p1", "p2", "diff"):
-        for stat in STATS:
-            for summary in SUMMARY:
-                name = f"{side}_{stat}_{summary}"
-                definitions.append({"name": name, "stat": stat, "summary": summary,
-                                    "formula": formulas[summary] if side != "diff" else
-                                    f"p1_{stat}_{summary} - p2_{stat}_{summary}"})
+    definitions = feature_definitions()
     (info_dir / "stat_definitions.json").write_text(
         json.dumps(definitions, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     (info_dir / "checks.json").write_text(json.dumps({

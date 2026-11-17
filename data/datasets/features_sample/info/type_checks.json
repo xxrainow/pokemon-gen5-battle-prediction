@@ -1,0 +1,43 @@
+{
+  "source": "data/datasets/basic/data/all_basic.parquet",
+  "source_sha256": "9a69b7dc33b0478b8e8ff5c1e37e654c894f4724306e55b6de9cdaecf9d7bb8e",
+  "battle_id": "gen5ubers-2293926818",
+  "sample_rows": 1,
+  "types": [
+    "Normal",
+    "Fire",
+    "Water",
+    "Electric",
+    "Grass",
+    "Ice",
+    "Fighting",
+    "Poison",
+    "Ground",
+    "Flying",
+    "Psychic",
+    "Bug",
+    "Rock",
+    "Ghost",
+    "Dragon",
+    "Dark",
+    "Steel"
+  ],
+  "feature_count": 51,
+  "metadata_and_target_count": 5,
+  "output_columns": 56,
+  "team_type_totals": {
+    "p1": 8,
+    "p2": 9
+  },
+  "checks": {
+    "independent_type_counts": "passed",
+    "dual_type_totals": "passed",
+    "count_and_difference_ranges": "passed",
+    "single_type_null_and_empty_handling": "passed",
+    "slot_order_invariance": "passed",
+    "team_swap_sign_check": "passed",
+    "metadata_and_target_not_used": "passed",
+    "parquet_and_csv_roundtrip": "passed",
+    "source_file_unchanged": "passed"
+  }
+}
