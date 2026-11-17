@@ -1,0 +1,314 @@
+{
+  "sources": [
+    {
+      "path": "/Users/jiwoo/Desktop/5-1/기계학습/pokemon/data/original/ubers.parquet",
+      "sha256": "4f4ee3dfeb8fd1b5a01d418cc0cb0db633a9fc2eaebef1975cb94b80db8dd7e6",
+      "rows": 90251,
+      "columns": 1243
+    },
+    {
+      "path": "/Users/jiwoo/Desktop/5-1/기계학습/pokemon/data/original/ou_part1.parquet",
+      "sha256": "6456b1fb71af63a66c38a86860e3048fe431594208433f8b5ee17babb570903c",
+      "rows": 199954,
+      "columns": 1243
+    },
+    {
+      "path": "/Users/jiwoo/Desktop/5-1/기계학습/pokemon/data/original/ou_part2.parquet",
+      "sha256": "633b24482ad3daddf16ce47091061109415ca7e049e1dd77842d2a3706d57f5c",
+      "rows": 199995,
+      "columns": 1243
+    },
+    {
+      "path": "/Users/jiwoo/Desktop/5-1/기계학습/pokemon/data/original/ou_part3.parquet",
+      "sha256": "c78ed469a8125262f2bdc93e68acb700faa4db57ef9d62f3c89ca6dd6aacbfb3",
+      "rows": 199469,
+      "columns": 1243
+    },
+    {
+      "path": "/Users/jiwoo/Desktop/5-1/기계학습/pokemon/data/original/uu.parquet",
+      "sha256": "7df527d3d0b283304074f2df11729c9150b00331a607ed8b17478351180283e2",
+      "rows": 69883,
+      "columns": 1243
+    },
+    {
+      "path": "/Users/jiwoo/Desktop/5-1/기계학습/pokemon/data/original/ru.parquet",
+      "sha256": "3c935e5ec8985ea2c0f751934215e5dc0172f8ba766fb978142b4df3e23626e8",
+      "rows": 31032,
+      "columns": 1243
+    },
+    {
+      "path": "/Users/jiwoo/Desktop/5-1/기계학습/pokemon/data/original/nu.parquet",
+      "sha256": "50b0bc4f023073d3f8885bd5a8113c1a1aab829085fe25a15dc866c9e4e5f90b",
+      "rows": 62535,
+      "columns": 1243
+    },
+    {
+      "path": "/Users/jiwoo/Desktop/5-1/기계학습/pokemon/data/original/pu.parquet",
+      "sha256": "44970c53ab0cfc119eab1818332ffa5235baa287a206fb481e13f8ea1381f97b",
+      "rows": 2147,
+      "columns": 1243
+    },
+    {
+      "path": "/Users/jiwoo/Desktop/5-1/기계학습/pokemon/data/original/zu.parquet",
+      "sha256": "7dad0abf9ccb830d697934cc8e1c8f717fbcbbf24b7d14ad40e924a5d0cfecaa",
+      "rows": 1030,
+      "columns": 1243
+    }
+  ],
+  "source_rows": 856296,
+  "output_rows": 822419,
+  "output_columns": 113,
+  "feature_count": 108,
+  "feature_columns": [
+    "p1_slot1_species",
+    "p1_slot1_hp",
+    "p1_slot1_atk",
+    "p1_slot1_def",
+    "p1_slot1_spa",
+    "p1_slot1_spd",
+    "p1_slot1_spe",
+    "p1_slot1_type1",
+    "p1_slot1_type2",
+    "p1_slot2_species",
+    "p1_slot2_hp",
+    "p1_slot2_atk",
+    "p1_slot2_def",
+    "p1_slot2_spa",
+    "p1_slot2_spd",
+    "p1_slot2_spe",
+    "p1_slot2_type1",
+    "p1_slot2_type2",
+    "p1_slot3_species",
+    "p1_slot3_hp",
+    "p1_slot3_atk",
+    "p1_slot3_def",
+    "p1_slot3_spa",
+    "p1_slot3_spd",
+    "p1_slot3_spe",
+    "p1_slot3_type1",
+    "p1_slot3_type2",
+    "p1_slot4_species",
+    "p1_slot4_hp",
+    "p1_slot4_atk",
+    "p1_slot4_def",
+    "p1_slot4_spa",
+    "p1_slot4_spd",
+    "p1_slot4_spe",
+    "p1_slot4_type1",
+    "p1_slot4_type2",
+    "p1_slot5_species",
+    "p1_slot5_hp",
+    "p1_slot5_atk",
+    "p1_slot5_def",
+    "p1_slot5_spa",
+    "p1_slot5_spd",
+    "p1_slot5_spe",
+    "p1_slot5_type1",
+    "p1_slot5_type2",
+    "p1_slot6_species",
+    "p1_slot6_hp",
+    "p1_slot6_atk",
+    "p1_slot6_def",
+    "p1_slot6_spa",
+    "p1_slot6_spd",
+    "p1_slot6_spe",
+    "p1_slot6_type1",
+    "p1_slot6_type2",
+    "p2_slot1_species",
+    "p2_slot1_hp",
+    "p2_slot1_atk",
+    "p2_slot1_def",
+    "p2_slot1_spa",
+    "p2_slot1_spd",
+    "p2_slot1_spe",
+    "p2_slot1_type1",
+    "p2_slot1_type2",
+    "p2_slot2_species",
+    "p2_slot2_hp",
+    "p2_slot2_atk",
+    "p2_slot2_def",
+    "p2_slot2_spa",
+    "p2_slot2_spd",
+    "p2_slot2_spe",
+    "p2_slot2_type1",
+    "p2_slot2_type2",
+    "p2_slot3_species",
+    "p2_slot3_hp",
+    "p2_slot3_atk",
+    "p2_slot3_def",
+    "p2_slot3_spa",
+    "p2_slot3_spd",
+    "p2_slot3_spe",
+    "p2_slot3_type1",
+    "p2_slot3_type2",
+    "p2_slot4_species",
+    "p2_slot4_hp",
+    "p2_slot4_atk",
+    "p2_slot4_def",
+    "p2_slot4_spa",
+    "p2_slot4_spd",
+    "p2_slot4_spe",
+    "p2_slot4_type1",
+    "p2_slot4_type2",
+    "p2_slot5_species",
+    "p2_slot5_hp",
+    "p2_slot5_atk",
+    "p2_slot5_def",
+    "p2_slot5_spa",
+    "p2_slot5_spd",
+    "p2_slot5_spe",
+    "p2_slot5_type1",
+    "p2_slot5_type2",
+    "p2_slot6_species",
+    "p2_slot6_hp",
+    "p2_slot6_atk",
+    "p2_slot6_def",
+    "p2_slot6_spa",
+    "p2_slot6_spd",
+    "p2_slot6_spe",
+    "p2_slot6_type1",
+    "p2_slot6_type2"
+  ],
+  "metadata_columns": [
+    "battle_id",
+    "formatid",
+    "uploadtime",
+    "winner"
+  ],
+  "target": "y=1: p1 승리, y=0: p2 승리",
+  "uploadtime_definition": "원본의 업로드 Unix 시각을 그대로 보존한 관리 정보. 자동으로 모델 입력에 포함하지 않음.",
+  "exclusion_reasons": {
+    "winner_not_1_or_2": 33872,
+    "formatid_missing_or_unexpected": 5
+  },
+  "duplicate_ids_among_winner_valid_rows": [],
+  "formats": [
+    {
+      "formatid": "gen5ubers",
+      "source_rows": 90251,
+      "winner_valid_rows": 81637,
+      "output_rows": 81637,
+      "y_counts": {
+        "1": 41668,
+        "0": 39969
+      },
+      "exclusion_reasons": {
+        "winner_not_1_or_2": 8614
+      },
+      "missing_required_by_column": {},
+      "single_type_slots": 416107,
+      "uploadtime_null_rows": 0
+    },
+    {
+      "formatid": "gen5ou",
+      "source_rows": 599418,
+      "winner_valid_rows": 578047,
+      "output_rows": 578042,
+      "y_counts": {
+        "1": 285041,
+        "0": 293001
+      },
+      "exclusion_reasons": {
+        "winner_not_1_or_2": 21371,
+        "formatid_missing_or_unexpected": 5
+      },
+      "missing_required_by_column": {},
+      "single_type_slots": 1903724,
+      "uploadtime_null_rows": 0
+    },
+    {
+      "formatid": "gen5uu",
+      "source_rows": 69883,
+      "winner_valid_rows": 68406,
+      "output_rows": 68406,
+      "y_counts": {
+        "1": 34109,
+        "0": 34297
+      },
+      "exclusion_reasons": {
+        "winner_not_1_or_2": 1477
+      },
+      "missing_required_by_column": {},
+      "single_type_slots": 348886,
+      "uploadtime_null_rows": 0
+    },
+    {
+      "formatid": "gen5ru",
+      "source_rows": 31032,
+      "winner_valid_rows": 30324,
+      "output_rows": 30324,
+      "y_counts": {
+        "1": 14970,
+        "0": 15354
+      },
+      "exclusion_reasons": {
+        "winner_not_1_or_2": 708
+      },
+      "missing_required_by_column": {},
+      "single_type_slots": 172827,
+      "uploadtime_null_rows": 0
+    },
+    {
+      "formatid": "gen5nu",
+      "source_rows": 62535,
+      "winner_valid_rows": 60873,
+      "output_rows": 60873,
+      "y_counts": {
+        "1": 30140,
+        "0": 30733
+      },
+      "exclusion_reasons": {
+        "winner_not_1_or_2": 1662
+      },
+      "missing_required_by_column": {},
+      "single_type_slots": 405347,
+      "uploadtime_null_rows": 0
+    },
+    {
+      "formatid": "gen5pu",
+      "source_rows": 2147,
+      "winner_valid_rows": 2114,
+      "output_rows": 2114,
+      "y_counts": {
+        "1": 1039,
+        "0": 1075
+      },
+      "exclusion_reasons": {
+        "winner_not_1_or_2": 33
+      },
+      "missing_required_by_column": {},
+      "single_type_slots": 13673,
+      "uploadtime_null_rows": 0
+    },
+    {
+      "formatid": "gen5zu",
+      "source_rows": 1030,
+      "winner_valid_rows": 1023,
+      "output_rows": 1023,
+      "y_counts": {
+        "1": 507,
+        "0": 516
+      },
+      "exclusion_reasons": {
+        "winner_not_1_or_2": 7
+      },
+      "missing_required_by_column": {},
+      "single_type_slots": 7590,
+      "uploadtime_null_rows": 0
+    }
+  ],
+  "roundtrip_verification": "passed",
+  "csv_body_sha256": "bce73731ea4c03213a8d2f66904991799faaaa41381e22d7f34e8f66caac3d62",
+  "limitations": [
+    "type2 빈칸 유지",
+    "범주형 인코딩 및 데이터 분할 미실시",
+    "조합 피처 미생성",
+    "원본 파싱·도감 세대 정확성을 다시 검증한 작업은 아님"
+  ],
+  "uploadtime_update_verification": {
+    "rows_compared_to_previous_output": 822419,
+    "previous_112_columns_unchanged": true,
+    "uploadtime_matches_original_for_every_row": true,
+    "excluded_rows_unchanged": true
+  }
+}

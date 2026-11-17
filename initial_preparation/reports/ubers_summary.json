@@ -1,0 +1,24 @@
+{
+  "inputs": [
+    "log/[Gen 5] UBERS.parquet"
+  ],
+  "battles_total": 90691,
+  "battles_valid": 82070,
+  "drop_reasons": {
+    "not_6v6_preview": 6916,
+    "no_start": 1217,
+    "unknown_winner": 48,
+    "tie": 440
+  },
+  "valid_p1_win_rate": 0.5106,
+  "valid_rating_both": 679,
+  "valid_rating_none": 81391,
+  "avg_moves_revealed_per_pokemon": 1.481,
+  "item_revealed_rate": 0.3208,
+  "ability_revealed_rate": 0.3567,
+  "n_columns": 91,
+  "parser_stats": {
+    "illusion_fix": 1415,
+    "unresolved_ident": 3
+  }
+}

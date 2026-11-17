@@ -1,0 +1,326 @@
+[
+  {
+    "name": "p1_hp_mean",
+    "stat": "hp",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p1_hp_max",
+    "stat": "hp",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p1_hp_std",
+    "stat": "hp",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "p1_atk_mean",
+    "stat": "atk",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p1_atk_max",
+    "stat": "atk",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p1_atk_std",
+    "stat": "atk",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "p1_def_mean",
+    "stat": "def",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p1_def_max",
+    "stat": "def",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p1_def_std",
+    "stat": "def",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "p1_spa_mean",
+    "stat": "spa",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p1_spa_max",
+    "stat": "spa",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p1_spa_std",
+    "stat": "spa",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "p1_spd_mean",
+    "stat": "spd",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p1_spd_max",
+    "stat": "spd",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p1_spd_std",
+    "stat": "spd",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "p1_spe_mean",
+    "stat": "spe",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p1_spe_max",
+    "stat": "spe",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p1_spe_std",
+    "stat": "spe",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "p2_hp_mean",
+    "stat": "hp",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p2_hp_max",
+    "stat": "hp",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p2_hp_std",
+    "stat": "hp",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "p2_atk_mean",
+    "stat": "atk",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p2_atk_max",
+    "stat": "atk",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p2_atk_std",
+    "stat": "atk",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "p2_def_mean",
+    "stat": "def",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p2_def_max",
+    "stat": "def",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p2_def_std",
+    "stat": "def",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "p2_spa_mean",
+    "stat": "spa",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p2_spa_max",
+    "stat": "spa",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p2_spa_std",
+    "stat": "spa",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "p2_spd_mean",
+    "stat": "spd",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p2_spd_max",
+    "stat": "spd",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p2_spd_std",
+    "stat": "spd",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "p2_spe_mean",
+    "stat": "spe",
+    "summary": "mean",
+    "formula": "sum(x1..x6) / 6"
+  },
+  {
+    "name": "p2_spe_max",
+    "stat": "spe",
+    "summary": "max",
+    "formula": "max(x1..x6)"
+  },
+  {
+    "name": "p2_spe_std",
+    "stat": "spe",
+    "summary": "std",
+    "formula": "sqrt(sum((xi - mean)^2) / 6)"
+  },
+  {
+    "name": "diff_hp_mean",
+    "stat": "hp",
+    "summary": "mean",
+    "formula": "p1_hp_mean - p2_hp_mean"
+  },
+  {
+    "name": "diff_hp_max",
+    "stat": "hp",
+    "summary": "max",
+    "formula": "p1_hp_max - p2_hp_max"
+  },
+  {
+    "name": "diff_hp_std",
+    "stat": "hp",
+    "summary": "std",
+    "formula": "p1_hp_std - p2_hp_std"
+  },
+  {
+    "name": "diff_atk_mean",
+    "stat": "atk",
+    "summary": "mean",
+    "formula": "p1_atk_mean - p2_atk_mean"
+  },
+  {
+    "name": "diff_atk_max",
+    "stat": "atk",
+    "summary": "max",
+    "formula": "p1_atk_max - p2_atk_max"
+  },
+  {
+    "name": "diff_atk_std",
+    "stat": "atk",
+    "summary": "std",
+    "formula": "p1_atk_std - p2_atk_std"
+  },
+  {
+    "name": "diff_def_mean",
+    "stat": "def",
+    "summary": "mean",
+    "formula": "p1_def_mean - p2_def_mean"
+  },
+  {
+    "name": "diff_def_max",
+    "stat": "def",
+    "summary": "max",
+    "formula": "p1_def_max - p2_def_max"
+  },
+  {
+    "name": "diff_def_std",
+    "stat": "def",
+    "summary": "std",
+    "formula": "p1_def_std - p2_def_std"
+  },
+  {
+    "name": "diff_spa_mean",
+    "stat": "spa",
+    "summary": "mean",
+    "formula": "p1_spa_mean - p2_spa_mean"
+  },
+  {
+    "name": "diff_spa_max",
+    "stat": "spa",
+    "summary": "max",
+    "formula": "p1_spa_max - p2_spa_max"
+  },
+  {
+    "name": "diff_spa_std",
+    "stat": "spa",
+    "summary": "std",
+    "formula": "p1_spa_std - p2_spa_std"
+  },
+  {
+    "name": "diff_spd_mean",
+    "stat": "spd",
+    "summary": "mean",
+    "formula": "p1_spd_mean - p2_spd_mean"
+  },
+  {
+    "name": "diff_spd_max",
+    "stat": "spd",
+    "summary": "max",
+    "formula": "p1_spd_max - p2_spd_max"
+  },
+  {
+    "name": "diff_spd_std",
+    "stat": "spd",
+    "summary": "std",
+    "formula": "p1_spd_std - p2_spd_std"
+  },
+  {
+    "name": "diff_spe_mean",
+    "stat": "spe",
+    "summary": "mean",
+    "formula": "p1_spe_mean - p2_spe_mean"
+  },
+  {
+    "name": "diff_spe_max",
+    "stat": "spe",
+    "summary": "max",
+    "formula": "p1_spe_max - p2_spe_max"
+  },
+  {
+    "name": "diff_spe_std",
+    "stat": "spe",
+    "summary": "std",
+    "formula": "p1_spe_std - p2_spe_std"
+  }
+]

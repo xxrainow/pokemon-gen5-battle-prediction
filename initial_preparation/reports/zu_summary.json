@@ -1,0 +1,19 @@
+{
+  "inputs": [
+    "log/[Gen 5] ZU.parquet"
+  ],
+  "battles_total": 1030,
+  "battles_valid": 1023,
+  "drop_reasons": {
+    "not_6v6_preview": 5,
+    "no_start": 2
+  },
+  "valid_p1_win_rate": 0.4956,
+  "valid_rating_both": 101,
+  "valid_rating_none": 922,
+  "avg_moves_revealed_per_pokemon": 1.966,
+  "item_revealed_rate": 0.4145,
+  "ability_revealed_rate": 0.0969,
+  "n_columns": 91,
+  "parser_stats": {}
+}
