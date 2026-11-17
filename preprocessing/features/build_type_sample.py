@@ -1,6 +1,6 @@
 """첫 경기의 타입별 팀원 수와 두 팀의 차이 51개를 계산하고 검증한다.
 
-실행: python preprocessing/build_type_sample.py
+실행: python -m preprocessing.features.build_type_sample
 기본 데이터와 기존 능력치 샘플은 수정하지 않는다. 전체 경기 적용은 하지 않는다.
 """
 
@@ -14,12 +14,12 @@ from pathlib import Path
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from prepare_basic import META as BASIC_META, TYPES as BASIC_TYPES
+from preprocessing.basic.prepare_basic import META as BASIC_META, TYPES as BASIC_TYPES
 
 
 TYPES = tuple(BASIC_TYPES.to_pylist())
 META = (*BASIC_META, "y")
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def feature_name(side, type_name):

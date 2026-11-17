@@ -12,5 +12,7 @@ node_modules/
 /data/initial_dataset/
 /data/datasets/**/*.csv
 /data/datasets/**/*.parquet
+/data/datasets/**/*.npz
+/data/datasets/**/*.npy
 !/data/datasets/features_sample/data/*.csv
 !/data/datasets/features_sample/data/*.parquet

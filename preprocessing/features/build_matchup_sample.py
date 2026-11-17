@@ -1,6 +1,6 @@
 """첫 경기의 방어 상성 피처 153개(공격 타입 17 × 약점·저항·무효 × A·B·차이)를 계산하고 검증한다.
 
-실행: python preprocessing/build_matchup_sample.py
+실행: python -m preprocessing.features.build_matchup_sample
 포켓몬마다 공격 타입별로 받는 배율을 상성표에서 찾고, 복수 타입이면 두 배율을 먼저 곱한 뒤 분류한다.
 특성·아이템·기술 고유 효과·경기 상태는 제외한다. 기본 데이터와 기존 샘플은 수정하지 않으며
 전체 경기 적용은 하지 않는다.
@@ -16,7 +16,7 @@ from pathlib import Path
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from build_type_sample import META, ROOT, TYPES
+from preprocessing.features.build_type_sample import META, ROOT, TYPES
 
 
 CHART_PATH = ROOT / "data/external/gen5_typechart.csv"

@@ -1,7 +1,7 @@
 """기본 표의 첫 경기에서 능력치 요약 피처 54개를 계산한다.
 
 준비: python -m pip install pyarrow
-실행: python preprocessing/build_stat_sample.py
+실행: python -m preprocessing.features.build_stat_sample
 원본 기본 표는 수정하지 않는다. 전체 경기 적용 코드는 build_stat_features.py다.
 """
 
@@ -85,7 +85,7 @@ def verify(row, result):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    root = Path(__file__).resolve().parent.parent
+    root = Path(__file__).resolve().parents[2]
     parser.add_argument("--source", type=Path, default=root / "data/datasets/basic/data/all_basic.parquet")
     parser.add_argument("--output", type=Path, default=root / "data/datasets/features_sample",
                         help="샘플 저장 폴더. 결과표는 data/, 설명·검증 자료는 info/에 저장")

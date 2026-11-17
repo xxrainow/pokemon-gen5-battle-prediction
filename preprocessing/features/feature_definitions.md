@@ -1,5 +1,7 @@
 # 조합 피처 정의
 
+분할 후 사용할 입력 컬럼과 종·타입·포맷의 변환 규칙은 [모델 입력과 인코딩 정의](../encoding/encoding_spec.md)에 정리한다. 이 문서의 피처 계산과 인코딩은 별도 단계다.
+
 ## 1. 이번에 계산하는 능력치 요약
 
 입력은 기본 표에 있는 각 팀 6마리의 HP·공격·방어·특수공격·특수방어·스피드 종족값이다. 기술·아이템·특성·레이팅·승패 정답은 피처 계산에 사용하지 않는다.
@@ -39,12 +41,12 @@
 
 ## 3. 파일 구성
 
-- `preprocessing/build_stat_sample.py`: 기본 표 첫 경기에서 능력치 피처 54개를 계산하고 검증하는 코드
+- `preprocessing/features/build_stat_sample.py`: 기본 표 첫 경기에서 능력치 피처 54개를 계산하고 검증하는 코드
 - `data/datasets/features_sample/data/stat_sample.parquet`, `data/datasets/features_sample/data/stat_sample.csv`: 첫 경기의 피처와 관리 정보·정답. 1행 × 59열
 - `data/datasets/features_sample/info/stat_definitions.json`: 실제 54개 피처 이름과 계산식
 - `data/datasets/features_sample/info/example.md`: 입력 팀원과 결과를 사람이 읽기 좋게 펼친 예시
 - `data/datasets/features_sample/info/checks.json`: 별도 계산·슬롯 순서·팀 교환·저장값 검사 결과
-- `preprocessing/build_type_sample.py`: 같은 첫 경기에서 타입 구성 피처 51개 계산·검증
+- `preprocessing/features/build_type_sample.py`: 같은 첫 경기에서 타입 구성 피처 51개 계산·검증
 - `data/datasets/features_sample/data/type_sample.csv`, `type_sample.parquet`: 타입 구성 결과표
 - `data/datasets/features_sample/info/type_definitions.json`: 실제 51개 타입 피처 정의
 - `data/datasets/features_sample/info/type_example.md`: 입력 포켓몬 타입과 실제 집계 설명
@@ -54,7 +56,7 @@
 
 ## 4. 전체 경기 적용
 
-- `preprocessing/build_stat_features.py`: 기본 데이터 전체에 능력치 피처 54개 추가
+- `preprocessing/features/build_stat_features.py`: 기본 데이터 전체에 능력치 피처 54개 추가
 - `data/datasets/stat_features/data/`: `all_stat_features.parquet`, `all_stat_features.csv`
 - `data/datasets/stat_features/info/`: 데이터 설명, 입력 목록, 검증 결과. 피처 정의는 샘플의 `features_sample/info/stat_definitions.json`을 참조
 
@@ -64,7 +66,7 @@
 
 ### 타입 구성 추가
 
-- `preprocessing/build_type_features.py`: 능력치 데이터 전체에 타입 구성 51개 추가
+- `preprocessing/features/build_type_features.py`: 능력치 데이터 전체에 타입 구성 51개 추가
 - `data/datasets/stat_type_features/data/`: `all_stat_type_features.parquet`, `all_stat_type_features.csv`
 - `data/datasets/stat_type_features/info/`: 설명, 입력 목록, 검증 결과. 타입 정의는 샘플의 `type_definitions.json`을 참조
 
@@ -95,7 +97,7 @@
 
 `side`는 `p1`, `p2`, `diff`(A − B)이고 `attack`은 17개 공격 타입의 소문자 영어 이름이다. 예: `p1_def_rock_weak_count`, `diff_def_ground_immune_count`. 팀별 값은 0~6, 차이는 −6~6이며 한 공격 타입에서 약점·저항·무효 수의 합은 6 이하다. 17 × 3 × 3 = **153개 피처**다.
 
-- `preprocessing/build_matchup_sample.py`: 첫 경기에서 153개 계산·검증
+- `preprocessing/features/build_matchup_sample.py`: 첫 경기에서 153개 계산·검증
 - `data/datasets/features_sample/data/matchup_sample.csv`, `matchup_sample.parquet`: 관리 정보·정답 포함 1행 × 158열
 - `data/datasets/features_sample/info/matchup_definitions.json`: 153개 피처 이름·계산식
 - `data/datasets/features_sample/info/matchup_members.json`: 12마리 × 17개 공격 타입 = 204건의 타입별 배율·최종 배율·분류
@@ -106,7 +108,7 @@
 
 ### 방어 상성 전체 적용
 
-- `preprocessing/build_matchup_features.py`: 능력치·타입 구성 데이터 전체에 방어 상성 153개 추가
+- `preprocessing/features/build_matchup_features.py`: 능력치·타입 구성 데이터 전체에 방어 상성 153개 추가
 - `data/datasets/stat_type_matchup_features/data/`: `all_stat_type_matchup_features.parquet`, `all_stat_type_matchup_features.csv`
 - `data/datasets/stat_type_matchup_features/info/`: 설명, 입력 목록, 검증 결과·공격 타입별 평균 수. 정의는 샘플의 `matchup_definitions.json`을 참조
 

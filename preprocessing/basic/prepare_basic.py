@@ -1,7 +1,7 @@
 """7개 포맷의 종·종족값·타입 기본 표를 만든다.
 
 설치: python -m pip install pyarrow
-실행: python preprocessing/prepare_basic.py
+실행: python -m preprocessing.basic.prepare_basic
 
 원본은 읽기만 한다. 출력: 통합 CSV/Parquet, 포맷별 Parquet,
 제외 행 목록, 품질 보고서, 컬럼 설명. 인코딩·분할·조합 피처는 수행하지 않는다.
@@ -64,7 +64,7 @@ def write_json(path, value):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    root = Path(__file__).resolve().parent.parent
+    root = Path(__file__).resolve().parents[2]
     parser.add_argument("--source", type=Path,
                         default=root / "data/initial_dataset")
     parser.add_argument("--output", type=Path,
