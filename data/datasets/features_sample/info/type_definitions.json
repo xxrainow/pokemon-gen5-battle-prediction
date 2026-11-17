@@ -1,0 +1,257 @@
+[
+  {
+    "name": "p1_type_normal_count",
+    "type": "Normal",
+    "formula": "p1에서 Normal 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_fire_count",
+    "type": "Fire",
+    "formula": "p1에서 Fire 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_water_count",
+    "type": "Water",
+    "formula": "p1에서 Water 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_electric_count",
+    "type": "Electric",
+    "formula": "p1에서 Electric 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_grass_count",
+    "type": "Grass",
+    "formula": "p1에서 Grass 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_ice_count",
+    "type": "Ice",
+    "formula": "p1에서 Ice 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_fighting_count",
+    "type": "Fighting",
+    "formula": "p1에서 Fighting 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_poison_count",
+    "type": "Poison",
+    "formula": "p1에서 Poison 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_ground_count",
+    "type": "Ground",
+    "formula": "p1에서 Ground 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_flying_count",
+    "type": "Flying",
+    "formula": "p1에서 Flying 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_psychic_count",
+    "type": "Psychic",
+    "formula": "p1에서 Psychic 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_bug_count",
+    "type": "Bug",
+    "formula": "p1에서 Bug 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_rock_count",
+    "type": "Rock",
+    "formula": "p1에서 Rock 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_ghost_count",
+    "type": "Ghost",
+    "formula": "p1에서 Ghost 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_dragon_count",
+    "type": "Dragon",
+    "formula": "p1에서 Dragon 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_dark_count",
+    "type": "Dark",
+    "formula": "p1에서 Dark 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p1_type_steel_count",
+    "type": "Steel",
+    "formula": "p1에서 Steel 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_normal_count",
+    "type": "Normal",
+    "formula": "p2에서 Normal 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_fire_count",
+    "type": "Fire",
+    "formula": "p2에서 Fire 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_water_count",
+    "type": "Water",
+    "formula": "p2에서 Water 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_electric_count",
+    "type": "Electric",
+    "formula": "p2에서 Electric 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_grass_count",
+    "type": "Grass",
+    "formula": "p2에서 Grass 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_ice_count",
+    "type": "Ice",
+    "formula": "p2에서 Ice 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_fighting_count",
+    "type": "Fighting",
+    "formula": "p2에서 Fighting 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_poison_count",
+    "type": "Poison",
+    "formula": "p2에서 Poison 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_ground_count",
+    "type": "Ground",
+    "formula": "p2에서 Ground 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_flying_count",
+    "type": "Flying",
+    "formula": "p2에서 Flying 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_psychic_count",
+    "type": "Psychic",
+    "formula": "p2에서 Psychic 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_bug_count",
+    "type": "Bug",
+    "formula": "p2에서 Bug 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_rock_count",
+    "type": "Rock",
+    "formula": "p2에서 Rock 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_ghost_count",
+    "type": "Ghost",
+    "formula": "p2에서 Ghost 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_dragon_count",
+    "type": "Dragon",
+    "formula": "p2에서 Dragon 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_dark_count",
+    "type": "Dark",
+    "formula": "p2에서 Dark 타입을 가진 팀원 수"
+  },
+  {
+    "name": "p2_type_steel_count",
+    "type": "Steel",
+    "formula": "p2에서 Steel 타입을 가진 팀원 수"
+  },
+  {
+    "name": "diff_type_normal_count",
+    "type": "Normal",
+    "formula": "p1_type_normal_count - p2_type_normal_count"
+  },
+  {
+    "name": "diff_type_fire_count",
+    "type": "Fire",
+    "formula": "p1_type_fire_count - p2_type_fire_count"
+  },
+  {
+    "name": "diff_type_water_count",
+    "type": "Water",
+    "formula": "p1_type_water_count - p2_type_water_count"
+  },
+  {
+    "name": "diff_type_electric_count",
+    "type": "Electric",
+    "formula": "p1_type_electric_count - p2_type_electric_count"
+  },
+  {
+    "name": "diff_type_grass_count",
+    "type": "Grass",
+    "formula": "p1_type_grass_count - p2_type_grass_count"
+  },
+  {
+    "name": "diff_type_ice_count",
+    "type": "Ice",
+    "formula": "p1_type_ice_count - p2_type_ice_count"
+  },
+  {
+    "name": "diff_type_fighting_count",
+    "type": "Fighting",
+    "formula": "p1_type_fighting_count - p2_type_fighting_count"
+  },
+  {
+    "name": "diff_type_poison_count",
+    "type": "Poison",
+    "formula": "p1_type_poison_count - p2_type_poison_count"
+  },
+  {
+    "name": "diff_type_ground_count",
+    "type": "Ground",
+    "formula": "p1_type_ground_count - p2_type_ground_count"
+  },
+  {
+    "name": "diff_type_flying_count",
+    "type": "Flying",
+    "formula": "p1_type_flying_count - p2_type_flying_count"
+  },
+  {
+    "name": "diff_type_psychic_count",
+    "type": "Psychic",
+    "formula": "p1_type_psychic_count - p2_type_psychic_count"
+  },
+  {
+    "name": "diff_type_bug_count",
+    "type": "Bug",
+    "formula": "p1_type_bug_count - p2_type_bug_count"
+  },
+  {
+    "name": "diff_type_rock_count",
+    "type": "Rock",
+    "formula": "p1_type_rock_count - p2_type_rock_count"
+  },
+  {
+    "name": "diff_type_ghost_count",
+    "type": "Ghost",
+    "formula": "p1_type_ghost_count - p2_type_ghost_count"
+  },
+  {
+    "name": "diff_type_dragon_count",
+    "type": "Dragon",
+    "formula": "p1_type_dragon_count - p2_type_dragon_count"
+  },
+  {
+    "name": "diff_type_dark_count",
+    "type": "Dark",
+    "formula": "p1_type_dark_count - p2_type_dark_count"
+  },
+  {
+    "name": "diff_type_steel_count",
+    "type": "Steel",
+    "formula": "p1_type_steel_count - p2_type_steel_count"
+  }
+]

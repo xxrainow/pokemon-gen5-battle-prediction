@@ -29,7 +29,7 @@
 - 7개 포맷을 같은 기준으로 정리한 **822,419경기의 기본 데이터셋** 구축
 - 포켓몬 기본 정보 108개에 경기 ID, 포맷, 업로드 시각, 승자와 정답을 포함한 113개 컬럼으로 구성
 
-능력치 요약 피처 54개를 샘플 경기에서 검증한 뒤 전체 822,419경기에 추가했습니다. 기존 113열을 유지한 167열 데이터셋을 별도로 저장하며, 입력 후보는 기본 피처 108개와 조합 피처 54개로 총 162개입니다. 타입 구성·방어 상성 피처는 아직 구현 전이며, 모델 학습과 성능 평가도 아직 수행하지 않았습니다.
+능력치 요약 피처 54개와 타입 구성 피처 51개를 각각 샘플 경기에서 검증한 뒤 전체 822,419경기에 추가했습니다. 능력치만 추가한 167열 데이터셋과 타입 구성까지 추가한 218열 데이터셋을 구분해 저장합니다. 후자의 입력 후보는 기본 108개 + 능력치 54개 + 타입 구성 51개로 총 213개이며 관리 정보 4개와 정답 1개는 별도입니다. 방어 상성 피처, 모델 학습과 성능 평가는 아직 수행하지 않았습니다.
 
 ## 디렉토리 구조
 
@@ -52,6 +52,8 @@ pokemon-gen5-battle-prediction/
 │   ├── prepare_basic.py
 │   ├── build_stat_sample.py
 │   ├── build_stat_features.py         # 전체 경기의 능력치 피처 생성·검증
+│   ├── build_type_sample.py           # 한 경기의 타입 구성 계산·검증
+│   ├── build_type_features.py         # 전체 경기의 타입 구성 추가·검증
 │   └── feature_definitions.md
 └── data/
     ├── raw/                          # 원본 경기 로그 Parquet 9개
@@ -70,15 +72,28 @@ pokemon-gen5-battle-prediction/
         ├── features_sample/
         │   ├── data/                 # 한 경기의 계산 결과표
         │   │   ├── stat_sample.csv
-        │   │   └── stat_sample.parquet
+        │   │   ├── stat_sample.parquet
+        │   │   ├── type_sample.csv
+        │   │   └── type_sample.parquet
         │   └── info/                 # 샘플 설명·검증 자료
         │       ├── stat_definitions.json
         │       ├── example.md
-        │       └── checks.json
-        └── stat_features/            # 전체 경기 + 능력치 조합 피처 54개
+        │       ├── checks.json
+        │       ├── type_definitions.json
+        │       ├── type_example.md
+        │       └── type_checks.json
+        ├── stat_features/            # 전체 경기 + 능력치 조합 피처 54개
+        │   ├── data/
+        │   │   ├── all_stat_features.csv
+        │   │   └── all_stat_features.parquet
+        │   └── info/
+        │       ├── README.md
+        │       ├── columns.json
+        │       └── quality_report.json
+        └── stat_type_features/       # 능력치 + 타입 구성: 전체 218열
             ├── data/
-            │   ├── all_stat_features.csv
-            │   └── all_stat_features.parquet
+            │   ├── all_stat_type_features.csv
+            │   └── all_stat_type_features.parquet
             └── info/
                 ├── README.md
                 ├── columns.json
@@ -126,6 +141,24 @@ python preprocessing/build_stat_features.py
 `basic/data/all_basic.parquet`의 기존 113열과 경기 순서를 유지하고, 샘플과 같은 계산으로 새 피처 54개를 뒤에 붙입니다. 통합 CSV·Parquet는 `stat_features/data/`, 설명·컬럼 정의·검증 결과는 `stat_features/info/`에 저장합니다. 기존 출력이 있으면 덮어쓰지 않고 중단하므로, 다시 만들 때는 `--output data/datasets/stat_features_new`처럼 새 폴더를 지정합니다.
 
 모든 경기의 기존 값과 새 피처의 결측·무한값 여부, CSV·Parquet 저장값을 검사합니다. 별도 계산과 슬롯 순서·팀 교환·관리 정보 및 정답 변경 검사는 고정 난수 표본과 첫·마지막 경기에서 수행합니다. `columns.json`에는 기본 입력 108개, 새 입력 54개, 합친 입력 162개의 목록을 구분해 기록하며 정답과 관리 정보는 입력 목록에 넣지 않습니다.
+
+타입 구성은 다음 명령으로 첫 경기 한 건만 계산합니다.
+
+```bash
+python preprocessing/build_type_sample.py
+```
+
+17개 타입별 팀원 수를 양 팀에서 세고 차이를 구해 51개 피처를 만듭니다. 복수 타입 포켓몬은 각각의 타입에 한 번씩 집계하므로, 팀별 타입 수 합계는 6보다 클 수 있습니다. 결과는 `features_sample/data/type_sample.*`, 설명·정의·검증 결과는 `features_sample/info/type_*`에 저장합니다. 실제 계산은 [타입 구성 예시](data/datasets/features_sample/info/type_example.md)에서 볼 수 있습니다. 기존 출력이 있으면 중단하므로 재실행은 `--output`으로 새 폴더를 지정합니다. 이 명령은 능력치 샘플과 전체 데이터셋을 수정하지 않습니다.
+
+전체 경기의 타입 구성은 다음 명령으로 추가합니다.
+
+```bash
+python preprocessing/build_type_features.py
+```
+
+기본 입력은 `stat_features/data/all_stat_features.parquet`입니다. 기존 167열을 유지하고 타입 구성 51열을 뒤에 붙여 `stat_type_features/data/`에 통합 CSV·Parquet를 저장합니다. 설명·입력 목록·검증 결과는 `stat_type_features/info/`에 저장하며, 피처 정의는 샘플의 파일을 참조합니다. 기존 출력이 있으면 중단하므로 다른 결과를 만들 때는 `--output`으로 새 폴더를 지정합니다.
+
+모든 경기에서 기존 167열과 순서 보존, 타입 수 0~6·차이 −6~6·단일/복수 타입 합계, CSV·Parquet 전체 값 일치를 검사합니다. 첫·마지막 경기와 고정 난수 표본은 별도 집계와 대조하고 슬롯 순서·팀 교환·관리 정보 및 정답 변경도 확인합니다. 입력 후보는 기본 108개·능력치 54개·타입 구성 51개로 나뉘며 `columns.json`에 각각 기록합니다.
 
 원본 로그부터 다시 처리하는 경우의 ZU 예시입니다. 다운로드 명령은 전체 로그 9개를 받습니다.
 
