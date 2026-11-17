@@ -29,7 +29,7 @@
 - 7개 포맷을 같은 기준으로 정리한 **822,419경기의 기본 데이터셋** 구축
 - 포켓몬 기본 정보 108개에 경기 ID, 포맷, 업로드 시각, 승자와 정답을 포함한 113개 컬럼으로 구성
 
-능력치 요약 피처 54개와 타입 구성 피처 51개를 각각 샘플 경기에서 검증한 뒤 전체 822,419경기에 추가했습니다. 능력치만 추가한 167열 데이터셋과 타입 구성까지 추가한 218열 데이터셋을 구분해 저장합니다. 후자의 입력 후보는 기본 108개 + 능력치 54개 + 타입 구성 51개로 총 213개이며 관리 정보 4개와 정답 1개는 별도입니다. 방어 상성 피처, 모델 학습과 성능 평가는 아직 수행하지 않았습니다.
+능력치 요약 피처 54개와 타입 구성 피처 51개를 각각 샘플 경기에서 검증한 뒤 전체 822,419경기에 추가했습니다. 능력치만 추가한 167열 데이터셋과 타입 구성까지 추가한 218열 데이터셋을 구분해 저장합니다. 후자의 입력 후보는 기본 108개 + 능력치 54개 + 타입 구성 51개로 총 213개이며 관리 정보 4개와 정답 1개는 별도입니다. 방어 상성 피처 153개도 첫 경기 샘플에서 검증한 뒤 전체 경기에 추가해 371열 데이터셋을 만들었습니다. 이 데이터셋의 입력 후보는 213개 + 방어 상성 153개 = 366개입니다. 모델 학습과 성능 평가는 아직 수행하지 않았습니다.
 
 ## 디렉토리 구조
 
@@ -38,9 +38,12 @@ pokemon-gen5-battle-prediction/
 ├── README.md
 ├── .gitignore
 ├── requirements.txt
+├── package.json                      # 공식 Showdown 로더 버전 고정
+├── package-lock.json                 # Node 의존성·패키지 무결성 고정
 ├── initial_preparation/              # 초기 데이터 수집·가공 작업
 │   ├── code/
 │   │   ├── log_download_gen5.sh      # 원본 경기 로그 다운로드
+│   │   ├── export_gen5_typechart.cjs # 공식 로더로 5세대 상성표 생성
 │   │   ├── parse_logs.py             # 경기 로그 파싱
 │   │   ├── merge_external.py         # 도감·기술 정보 결합
 │   │   ├── verify_merge.py           # 결합 결과 검증
@@ -54,12 +57,16 @@ pokemon-gen5-battle-prediction/
 │   ├── build_stat_features.py         # 전체 경기의 능력치 피처 생성·검증
 │   ├── build_type_sample.py           # 한 경기의 타입 구성 계산·검증
 │   ├── build_type_features.py         # 전체 경기의 타입 구성 추가·검증
+│   ├── build_matchup_sample.py        # 한 경기의 방어 상성 계산·검증
+│   ├── build_matchup_features.py      # 전체 경기의 방어 상성 추가·검증
 │   └── feature_definitions.md
 └── data/
     ├── raw/                          # 원본 경기 로그 Parquet 9개
     ├── external/
     │   ├── pokedex.csv                # 포켓몬 종족값·타입
-    │   └── moves.csv                  # 기술 정보
+    │   ├── moves.csv                  # 기술 정보
+    │   ├── gen5_typechart.csv         # 공격(행) × 방어(열) 타입별 배율
+    │   └── gen5_typechart_info.json   # 상성표 출처·버전·해시·검증 결과
     ├── initial_dataset/              # 초기 가공 데이터 CSV·Parquet 18개 보존
     └── datasets/
         ├── basic/
@@ -74,14 +81,20 @@ pokemon-gen5-battle-prediction/
         │   │   ├── stat_sample.csv
         │   │   ├── stat_sample.parquet
         │   │   ├── type_sample.csv
-        │   │   └── type_sample.parquet
+        │   │   ├── type_sample.parquet
+        │   │   ├── matchup_sample.csv
+        │   │   └── matchup_sample.parquet
         │   └── info/                 # 샘플 설명·검증 자료
         │       ├── stat_definitions.json
         │       ├── example.md
         │       ├── checks.json
         │       ├── type_definitions.json
         │       ├── type_example.md
-        │       └── type_checks.json
+        │       ├── type_checks.json
+        │       ├── matchup_definitions.json
+        │       ├── matchup_members.json  # 포켓몬 × 공격 타입별 배율 상세
+        │       ├── matchup_example.md
+        │       └── matchup_checks.json
         ├── stat_features/            # 전체 경기 + 능력치 조합 피처 54개
         │   ├── data/
         │   │   ├── all_stat_features.csv
@@ -90,10 +103,18 @@ pokemon-gen5-battle-prediction/
         │       ├── README.md
         │       ├── columns.json
         │       └── quality_report.json
-        └── stat_type_features/       # 능력치 + 타입 구성: 전체 218열
+        ├── stat_type_features/       # 능력치 + 타입 구성: 전체 218열
+        │   ├── data/
+        │   │   ├── all_stat_type_features.csv
+        │   │   └── all_stat_type_features.parquet
+        │   └── info/
+        │       ├── README.md
+        │       ├── columns.json
+        │       └── quality_report.json
+        └── stat_type_matchup_features/ # 능력치 + 타입 구성 + 방어 상성: 전체 371열
             ├── data/
-            │   ├── all_stat_type_features.csv
-            │   └── all_stat_type_features.parquet
+            │   ├── all_stat_type_matchup_features.csv
+            │   └── all_stat_type_matchup_features.parquet
             └── info/
                 ├── README.md
                 ├── columns.json
@@ -174,6 +195,41 @@ python initial_preparation/code/verify_merge.py zu
 전체 로그에서 기본 표를 다시 만들려면 9개 파일을 각각 `ubers`, `ou_part1`, `ou_part2`, `ou_part3`, `uu`, `ru`, `nu`, `pu`, `zu`라는 출력 이름으로 파싱하고 결합한 뒤, `prepare_basic.py --source data/datasets/enriched`를 실행합니다. 분할 처리 결과를 합치는 `combine_parts.py`는 기존처럼 대상 폴더와 이름을 인자로 받습니다.
 
 Python 코드의 기본 경로는 스크립트 위치를 기준으로 계산합니다. 사용자가 직접 넘기는 상대 경로는 명령을 실행한 위치를 기준으로 합니다.
+
+## 5세대 타입 상성표
+
+방어 상성 피처를 만들기 위한 참조 표는 `data/external/gen5_typechart.csv`입니다. **행은 공격 타입**, **열은 방어 측 단일 타입**이며 17 × 17 = 289개 배율(0, 0.5, 1, 2)을 담습니다. `attack_type`은 행의 타입을 표시하는 열입니다. 복수 타입은 해당 두 열의 값을 곱합니다. 예를 들어 바위 공격 → 불꽃/비행은 2 × 2 = 4배이고, 무효인 타입이 하나라도 있으면 0배입니다. 특성·아이템·기술 고유 효과·경기 상태는 포함하지 않습니다.
+
+[Pokémon Showdown의 공식 Dex 로더](https://github.com/smogon/pokemon-showdown/blob/master/sim/DEX.md)를 `Dex.mod('gen5')`로 불러 생성합니다. `getImmunity`로 무효를 먼저 확인하고, 무효가 아니면 `2 ** getEffectiveness`로 배율을 얻습니다. 세대별 상성 파일을 직접 합치거나 현재 세대 표를 재사용하지 않습니다. Showdown 패키지 버전은 0.11.11로 고정했으며, 패키지 무결성·상속 경로·로더 파일 해시·검증 결과는 `gen5_typechart_info.json`에 기록합니다.
+
+상성표를 다시 생성할 때만 Node.js와 다음 명령이 필요합니다. Node.js 26.10.0에서 실행을 확인했습니다. Python 전처리에서 이미 생성된 CSV를 읽을 때는 Node.js를 실행할 필요가 없습니다.
+
+```bash
+npm ci --omit=optional --ignore-scripts --no-audit --no-fund
+npm run export:gen5-typechart
+```
+
+기존 출력 파일이 있으면 중단합니다. 다른 폴더로 재생성하려면 `npm run export:gen5-typechart -- --output-dir /원하는/경로`를 사용합니다. 모든 289개 단일 타입 배율과 2,601개 단일·복수 방어 조합을 로더와 대조하고, 5세대 강철의 고스트·악 반감과 6세대와의 차이도 검사합니다. 방어 상성 피처는 첫 경기 샘플로 검증한 뒤 전체 경기에 적용했습니다.
+
+### 방어 상성 샘플
+
+```bash
+python preprocessing/build_matchup_sample.py
+```
+
+첫 경기의 12마리마다 공격 타입 17개에 대해 받는 배율을 상성표에서 찾습니다. 복수 타입은 **두 배율을 먼저 곱한 뒤** 분류합니다. 최종 2·4배는 약점, 0.5·0.25배는 저항, 0배는 무효이며 1배는 어느 쪽에도 세지 않습니다. 예를 들어 한 타입이 2배, 다른 타입이 0.5배면 최종 1배이므로 약점으로 세지 않습니다. 팀별로 각 분류의 포켓몬 수를 세고 A팀 − B팀 차이를 더해 17 × 3 × 3 = 153개 피처를 만듭니다.
+
+결과는 `features_sample/data/matchup_sample.*`(1행 × 158열), 포켓몬별 배율 상세·정의·검증 결과는 `features_sample/info/matchup_*`에 저장합니다. 실제 계산은 [방어 상성 예시](data/datasets/features_sample/info/matchup_example.md)에서 볼 수 있습니다. 상성표 해시가 `gen5_typechart_info.json`과 다르면 중단하고, 기존 출력이 있으면 덮어쓰지 않습니다. 특성·아이템 효과는 제외합니다.
+
+### 방어 상성 전체 적용
+
+```bash
+python preprocessing/build_matchup_features.py
+```
+
+기본 입력은 `stat_type_features/data/all_stat_type_features.parquet`입니다. 기존 218열의 값·순서를 유지하고 방어 상성 153열을 뒤에 붙여 `stat_type_matchup_features/data/`에 822,419행 × 371열의 CSV·Parquet를 저장합니다. 계산 규칙과 피처 이름은 샘플 코드와 공유합니다. 입력 후보는 기본 108개 + 능력치 54개 + 타입 구성 51개 + 방어 상성 153개 = 366개이며, `columns.json`의 `matchup_features`로 방어 상성만 따로 고를 수 있습니다.
+
+모든 경기에서 기존 218열과 순서 보존, 수 0~6·차이 −6~6, 공격 타입별 약점·저항·무효 합계 6 이하, CSV·Parquet 전체 값 일치를 검사합니다. 타입만 기준이면 무효는 정해진 타입에서만 생기므로(예: 땅 공격 → 비행), 모든 경기의 무효 수를 타입 구성 피처와도 대조합니다. 첫·마지막 경기와 고정 난수 표본 102경기는 샘플 코드의 행 단위 계산과 대조하고 슬롯 순서·팀 교환·관리 정보 및 정답 변경도 확인합니다. 공격 타입별 팀 평균 수는 `quality_report.json`에 기록합니다. 기존 출력이 있으면 중단하므로 다시 만들 때는 `--output`으로 새 폴더를 지정합니다.
 
 ## 참고 프로젝트
 

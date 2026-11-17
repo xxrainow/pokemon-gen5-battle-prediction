@@ -1,0 +1,70 @@
+{
+  "source": "data/datasets/basic/data/all_basic.parquet",
+  "source_sha256": "9a69b7dc33b0478b8e8ff5c1e37e654c894f4724306e55b6de9cdaecf9d7bb8e",
+  "typechart": "data/external/gen5_typechart.csv",
+  "typechart_sha256": "8a53c8287b0fe05ca1e454640dd2ae50a78a4853feab2e54f086ee212dcba6c9",
+  "battle_id": "gen5ubers-2293926818",
+  "sample_rows": 1,
+  "attack_types": [
+    "Normal",
+    "Fire",
+    "Water",
+    "Electric",
+    "Grass",
+    "Ice",
+    "Fighting",
+    "Poison",
+    "Ground",
+    "Flying",
+    "Psychic",
+    "Bug",
+    "Rock",
+    "Ghost",
+    "Dragon",
+    "Dark",
+    "Steel"
+  ],
+  "categories": {
+    "weak": "최종 배율 2·4",
+    "resist": "최종 배율 0.5·0.25",
+    "immune": "최종 배율 0",
+    "neutral(세지 않음)": "최종 배율 1"
+  },
+  "feature_count": 153,
+  "metadata_and_target_count": 5,
+  "output_columns": 158,
+  "member_attack_pairs": 204,
+  "category_totals": {
+    "p1": {
+      "weak": 22,
+      "resist": 24,
+      "immune": 3,
+      "neutral": 53
+    },
+    "p2": {
+      "weak": 15,
+      "resist": 31,
+      "immune": 5,
+      "neutral": 51
+    }
+  },
+  "excludes": [
+    "특성",
+    "아이템",
+    "기술 고유 효과",
+    "날씨 등 경기 상태"
+  ],
+  "checks": {
+    "chart_sha256_matches_info": "passed",
+    "chart_examples_and_multiply_before_classify": "passed",
+    "all_type_combinations_independent_classification": "passed",
+    "independent_team_counts": "passed",
+    "count_and_difference_ranges": "passed",
+    "slot_order_invariance": "passed",
+    "team_swap_sign_check": "passed",
+    "single_type_null_and_empty_handling": "passed",
+    "metadata_and_target_not_used": "passed",
+    "parquet_and_csv_roundtrip": "passed",
+    "source_file_unchanged": "passed"
+  }
+}

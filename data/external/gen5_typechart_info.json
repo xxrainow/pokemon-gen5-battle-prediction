@@ -1,0 +1,201 @@
+{
+  "generation": 5,
+  "mod": "gen5",
+  "source": {
+    "repository": "https://github.com/smogon/pokemon-showdown",
+    "documentation": "https://github.com/smogon/pokemon-showdown/blob/master/sim/DEX.md",
+    "package": "pokemon-showdown",
+    "version": "0.11.11",
+    "resolved": "https://registry.npmjs.org/pokemon-showdown/-/pokemon-showdown-0.11.11.tgz",
+    "integrity": "sha512-FdW7gt3TkG4AdXmpMTPYX2kx42VEfY8tQApjW9wEHOGzwH6Kn97wD0o5uIzAc4xpO1W+Tim70Ti9+FNkMNCA2w==",
+    "loader": "Dex.mod('gen5')",
+    "inheritance": [
+      "gen5",
+      "gen6",
+      "gen7",
+      "gen8",
+      "base"
+    ],
+    "loader_files_sha256": {
+      "dist/sim/dex.js": "43e1ef7d40d06c8af0a4037b551054b16d23a720564e99f57be93698862725d5",
+      "dist/sim/dex-data.js": "c9d1480d52e57928c27466bce45b062511b348fcf6755dc6ab8b1c312fa3c3c4",
+      "dist/data/mods/gen5/typechart.js": "dd0185b249d8e338523276ddc144c05d64dcf6088a008b097127cfc00c63460a",
+      "dist/data/mods/gen5/scripts.js": "cefeaa038f3d16289bd60700b0cfc3d0cfc88c310140c68d4f81d0becc90b27f",
+      "dist/data/mods/gen6/typechart.js": "0f98bb8caee1e908691bb8d37d52df60e01f0448b3ddb28a8ac92432744cea16",
+      "dist/data/mods/gen6/scripts.js": "e3203c2c3790c67807e8bd7699d3d2d0bc9b98abffa0bc06c3efea0d0f676bb5",
+      "dist/data/mods/gen7/scripts.js": "06fc9d4c78804c98f83d3880f83a562a158b012c081567b2d7ff4efe65bc18a2",
+      "dist/data/mods/gen8/typechart.js": "95785ae8fbe175b38c281f8e5e160f24ffeb9512c292f392a4fc10604563d87f",
+      "dist/data/mods/gen8/scripts.js": "475359acd54e17b2659ca8e42670f63adb42058e8cd24002e62c27bf12bf2349",
+      "dist/data/typechart.js": "7871f541822a95cb9288d89e98cd7f30cfa2ba94938711b3796999411215e05b",
+      "dist/data/scripts.js": "6c4c39184978eb3f308e60dbc21b1043cd03e57671959c210318d0e424627d39"
+    }
+  },
+  "types": [
+    "Normal",
+    "Fire",
+    "Water",
+    "Electric",
+    "Grass",
+    "Ice",
+    "Fighting",
+    "Poison",
+    "Ground",
+    "Flying",
+    "Psychic",
+    "Bug",
+    "Rock",
+    "Ghost",
+    "Dragon",
+    "Dark",
+    "Steel"
+  ],
+  "axes": {
+    "rows": "공격 타입 (attack_type)",
+    "columns": "방어 측 단일 타입",
+    "cells": "피해 배율"
+  },
+  "type_count": 17,
+  "cell_count": 289,
+  "allowed_single_type_multipliers": [
+    0,
+    0.5,
+    1,
+    2
+  ],
+  "formula": "getImmunity(attack, defense) ? 2 ** getEffectiveness(attack, defense) : 0",
+  "dual_type_rule": "두 단일 타입의 배율을 곱한다. 0배가 하나라도 있으면 결과는 0배다.",
+  "excludes": [
+    "특성",
+    "아이템",
+    "기술 고유 효과",
+    "날씨 등 경기 상태"
+  ],
+  "csv_sha256": "8a53c8287b0fe05ca1e454640dd2ae50a78a4853feab2e54f086ee212dcba6c9",
+  "checks": {
+    "pinned_official_loader": "passed",
+    "gen5_and_17_standard_types": "passed",
+    "all_289_resolved_codes_match": "passed",
+    "all_2601_single_dual_combinations_match": "passed",
+    "known_examples": "passed",
+    "gen5_steel_differs_from_gen6": "passed",
+    "saved_csv_roundtrip": "passed"
+  },
+  "single_type_checks": 289,
+  "single_dual_combination_checks": 2601,
+  "examples": [
+    {
+      "attack": "Ghost",
+      "defense": [
+        "Steel"
+      ],
+      "expected": 0.5,
+      "actual": 0.5
+    },
+    {
+      "attack": "Dark",
+      "defense": [
+        "Steel"
+      ],
+      "expected": 0.5,
+      "actual": 0.5
+    },
+    {
+      "attack": "Normal",
+      "defense": [
+        "Ghost"
+      ],
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "attack": "Electric",
+      "defense": [
+        "Ground"
+      ],
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "attack": "Ground",
+      "defense": [
+        "Flying"
+      ],
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "attack": "Fire",
+      "defense": [
+        "Water"
+      ],
+      "expected": 0.5,
+      "actual": 0.5
+    },
+    {
+      "attack": "Water",
+      "defense": [
+        "Fire"
+      ],
+      "expected": 2,
+      "actual": 2
+    },
+    {
+      "attack": "Normal",
+      "defense": [
+        "Fire"
+      ],
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "attack": "Rock",
+      "defense": [
+        "Fire",
+        "Flying"
+      ],
+      "expected": 4,
+      "actual": 4
+    },
+    {
+      "attack": "Water",
+      "defense": [
+        "Water",
+        "Dragon"
+      ],
+      "expected": 0.25,
+      "actual": 0.25
+    },
+    {
+      "attack": "Electric",
+      "defense": [
+        "Water",
+        "Ground"
+      ],
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "attack": "Grass",
+      "defense": [
+        "Water",
+        "Ground"
+      ],
+      "expected": 4,
+      "actual": 4
+    }
+  ],
+  "generation_checks": [
+    {
+      "attack": "Ghost",
+      "defense": "Steel",
+      "gen5": 0.5,
+      "gen6": 1
+    },
+    {
+      "attack": "Dark",
+      "defense": "Steel",
+      "gen5": 0.5,
+      "gen6": 1
+    }
+  ]
+}

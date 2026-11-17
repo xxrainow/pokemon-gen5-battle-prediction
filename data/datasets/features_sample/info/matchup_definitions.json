@@ -1,0 +1,920 @@
+[
+  {
+    "name": "p1_def_normal_weak_count",
+    "attack_type": "Normal",
+    "category": "weak",
+    "formula": "p1 팀원 중 Normal 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_normal_resist_count",
+    "attack_type": "Normal",
+    "category": "resist",
+    "formula": "p1 팀원 중 Normal 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_normal_immune_count",
+    "attack_type": "Normal",
+    "category": "immune",
+    "formula": "p1 팀원 중 Normal 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_fire_weak_count",
+    "attack_type": "Fire",
+    "category": "weak",
+    "formula": "p1 팀원 중 Fire 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_fire_resist_count",
+    "attack_type": "Fire",
+    "category": "resist",
+    "formula": "p1 팀원 중 Fire 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_fire_immune_count",
+    "attack_type": "Fire",
+    "category": "immune",
+    "formula": "p1 팀원 중 Fire 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_water_weak_count",
+    "attack_type": "Water",
+    "category": "weak",
+    "formula": "p1 팀원 중 Water 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_water_resist_count",
+    "attack_type": "Water",
+    "category": "resist",
+    "formula": "p1 팀원 중 Water 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_water_immune_count",
+    "attack_type": "Water",
+    "category": "immune",
+    "formula": "p1 팀원 중 Water 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_electric_weak_count",
+    "attack_type": "Electric",
+    "category": "weak",
+    "formula": "p1 팀원 중 Electric 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_electric_resist_count",
+    "attack_type": "Electric",
+    "category": "resist",
+    "formula": "p1 팀원 중 Electric 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_electric_immune_count",
+    "attack_type": "Electric",
+    "category": "immune",
+    "formula": "p1 팀원 중 Electric 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_grass_weak_count",
+    "attack_type": "Grass",
+    "category": "weak",
+    "formula": "p1 팀원 중 Grass 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_grass_resist_count",
+    "attack_type": "Grass",
+    "category": "resist",
+    "formula": "p1 팀원 중 Grass 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_grass_immune_count",
+    "attack_type": "Grass",
+    "category": "immune",
+    "formula": "p1 팀원 중 Grass 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_ice_weak_count",
+    "attack_type": "Ice",
+    "category": "weak",
+    "formula": "p1 팀원 중 Ice 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_ice_resist_count",
+    "attack_type": "Ice",
+    "category": "resist",
+    "formula": "p1 팀원 중 Ice 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_ice_immune_count",
+    "attack_type": "Ice",
+    "category": "immune",
+    "formula": "p1 팀원 중 Ice 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_fighting_weak_count",
+    "attack_type": "Fighting",
+    "category": "weak",
+    "formula": "p1 팀원 중 Fighting 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_fighting_resist_count",
+    "attack_type": "Fighting",
+    "category": "resist",
+    "formula": "p1 팀원 중 Fighting 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_fighting_immune_count",
+    "attack_type": "Fighting",
+    "category": "immune",
+    "formula": "p1 팀원 중 Fighting 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_poison_weak_count",
+    "attack_type": "Poison",
+    "category": "weak",
+    "formula": "p1 팀원 중 Poison 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_poison_resist_count",
+    "attack_type": "Poison",
+    "category": "resist",
+    "formula": "p1 팀원 중 Poison 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_poison_immune_count",
+    "attack_type": "Poison",
+    "category": "immune",
+    "formula": "p1 팀원 중 Poison 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_ground_weak_count",
+    "attack_type": "Ground",
+    "category": "weak",
+    "formula": "p1 팀원 중 Ground 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_ground_resist_count",
+    "attack_type": "Ground",
+    "category": "resist",
+    "formula": "p1 팀원 중 Ground 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_ground_immune_count",
+    "attack_type": "Ground",
+    "category": "immune",
+    "formula": "p1 팀원 중 Ground 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_flying_weak_count",
+    "attack_type": "Flying",
+    "category": "weak",
+    "formula": "p1 팀원 중 Flying 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_flying_resist_count",
+    "attack_type": "Flying",
+    "category": "resist",
+    "formula": "p1 팀원 중 Flying 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_flying_immune_count",
+    "attack_type": "Flying",
+    "category": "immune",
+    "formula": "p1 팀원 중 Flying 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_psychic_weak_count",
+    "attack_type": "Psychic",
+    "category": "weak",
+    "formula": "p1 팀원 중 Psychic 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_psychic_resist_count",
+    "attack_type": "Psychic",
+    "category": "resist",
+    "formula": "p1 팀원 중 Psychic 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_psychic_immune_count",
+    "attack_type": "Psychic",
+    "category": "immune",
+    "formula": "p1 팀원 중 Psychic 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_bug_weak_count",
+    "attack_type": "Bug",
+    "category": "weak",
+    "formula": "p1 팀원 중 Bug 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_bug_resist_count",
+    "attack_type": "Bug",
+    "category": "resist",
+    "formula": "p1 팀원 중 Bug 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_bug_immune_count",
+    "attack_type": "Bug",
+    "category": "immune",
+    "formula": "p1 팀원 중 Bug 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_rock_weak_count",
+    "attack_type": "Rock",
+    "category": "weak",
+    "formula": "p1 팀원 중 Rock 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_rock_resist_count",
+    "attack_type": "Rock",
+    "category": "resist",
+    "formula": "p1 팀원 중 Rock 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_rock_immune_count",
+    "attack_type": "Rock",
+    "category": "immune",
+    "formula": "p1 팀원 중 Rock 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_ghost_weak_count",
+    "attack_type": "Ghost",
+    "category": "weak",
+    "formula": "p1 팀원 중 Ghost 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_ghost_resist_count",
+    "attack_type": "Ghost",
+    "category": "resist",
+    "formula": "p1 팀원 중 Ghost 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_ghost_immune_count",
+    "attack_type": "Ghost",
+    "category": "immune",
+    "formula": "p1 팀원 중 Ghost 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_dragon_weak_count",
+    "attack_type": "Dragon",
+    "category": "weak",
+    "formula": "p1 팀원 중 Dragon 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_dragon_resist_count",
+    "attack_type": "Dragon",
+    "category": "resist",
+    "formula": "p1 팀원 중 Dragon 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_dragon_immune_count",
+    "attack_type": "Dragon",
+    "category": "immune",
+    "formula": "p1 팀원 중 Dragon 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_dark_weak_count",
+    "attack_type": "Dark",
+    "category": "weak",
+    "formula": "p1 팀원 중 Dark 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_dark_resist_count",
+    "attack_type": "Dark",
+    "category": "resist",
+    "formula": "p1 팀원 중 Dark 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_dark_immune_count",
+    "attack_type": "Dark",
+    "category": "immune",
+    "formula": "p1 팀원 중 Dark 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_steel_weak_count",
+    "attack_type": "Steel",
+    "category": "weak",
+    "formula": "p1 팀원 중 Steel 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_steel_resist_count",
+    "attack_type": "Steel",
+    "category": "resist",
+    "formula": "p1 팀원 중 Steel 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p1_def_steel_immune_count",
+    "attack_type": "Steel",
+    "category": "immune",
+    "formula": "p1 팀원 중 Steel 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_normal_weak_count",
+    "attack_type": "Normal",
+    "category": "weak",
+    "formula": "p2 팀원 중 Normal 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_normal_resist_count",
+    "attack_type": "Normal",
+    "category": "resist",
+    "formula": "p2 팀원 중 Normal 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_normal_immune_count",
+    "attack_type": "Normal",
+    "category": "immune",
+    "formula": "p2 팀원 중 Normal 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_fire_weak_count",
+    "attack_type": "Fire",
+    "category": "weak",
+    "formula": "p2 팀원 중 Fire 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_fire_resist_count",
+    "attack_type": "Fire",
+    "category": "resist",
+    "formula": "p2 팀원 중 Fire 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_fire_immune_count",
+    "attack_type": "Fire",
+    "category": "immune",
+    "formula": "p2 팀원 중 Fire 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_water_weak_count",
+    "attack_type": "Water",
+    "category": "weak",
+    "formula": "p2 팀원 중 Water 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_water_resist_count",
+    "attack_type": "Water",
+    "category": "resist",
+    "formula": "p2 팀원 중 Water 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_water_immune_count",
+    "attack_type": "Water",
+    "category": "immune",
+    "formula": "p2 팀원 중 Water 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_electric_weak_count",
+    "attack_type": "Electric",
+    "category": "weak",
+    "formula": "p2 팀원 중 Electric 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_electric_resist_count",
+    "attack_type": "Electric",
+    "category": "resist",
+    "formula": "p2 팀원 중 Electric 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_electric_immune_count",
+    "attack_type": "Electric",
+    "category": "immune",
+    "formula": "p2 팀원 중 Electric 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_grass_weak_count",
+    "attack_type": "Grass",
+    "category": "weak",
+    "formula": "p2 팀원 중 Grass 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_grass_resist_count",
+    "attack_type": "Grass",
+    "category": "resist",
+    "formula": "p2 팀원 중 Grass 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_grass_immune_count",
+    "attack_type": "Grass",
+    "category": "immune",
+    "formula": "p2 팀원 중 Grass 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_ice_weak_count",
+    "attack_type": "Ice",
+    "category": "weak",
+    "formula": "p2 팀원 중 Ice 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_ice_resist_count",
+    "attack_type": "Ice",
+    "category": "resist",
+    "formula": "p2 팀원 중 Ice 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_ice_immune_count",
+    "attack_type": "Ice",
+    "category": "immune",
+    "formula": "p2 팀원 중 Ice 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_fighting_weak_count",
+    "attack_type": "Fighting",
+    "category": "weak",
+    "formula": "p2 팀원 중 Fighting 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_fighting_resist_count",
+    "attack_type": "Fighting",
+    "category": "resist",
+    "formula": "p2 팀원 중 Fighting 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_fighting_immune_count",
+    "attack_type": "Fighting",
+    "category": "immune",
+    "formula": "p2 팀원 중 Fighting 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_poison_weak_count",
+    "attack_type": "Poison",
+    "category": "weak",
+    "formula": "p2 팀원 중 Poison 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_poison_resist_count",
+    "attack_type": "Poison",
+    "category": "resist",
+    "formula": "p2 팀원 중 Poison 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_poison_immune_count",
+    "attack_type": "Poison",
+    "category": "immune",
+    "formula": "p2 팀원 중 Poison 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_ground_weak_count",
+    "attack_type": "Ground",
+    "category": "weak",
+    "formula": "p2 팀원 중 Ground 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_ground_resist_count",
+    "attack_type": "Ground",
+    "category": "resist",
+    "formula": "p2 팀원 중 Ground 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_ground_immune_count",
+    "attack_type": "Ground",
+    "category": "immune",
+    "formula": "p2 팀원 중 Ground 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_flying_weak_count",
+    "attack_type": "Flying",
+    "category": "weak",
+    "formula": "p2 팀원 중 Flying 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_flying_resist_count",
+    "attack_type": "Flying",
+    "category": "resist",
+    "formula": "p2 팀원 중 Flying 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_flying_immune_count",
+    "attack_type": "Flying",
+    "category": "immune",
+    "formula": "p2 팀원 중 Flying 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_psychic_weak_count",
+    "attack_type": "Psychic",
+    "category": "weak",
+    "formula": "p2 팀원 중 Psychic 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_psychic_resist_count",
+    "attack_type": "Psychic",
+    "category": "resist",
+    "formula": "p2 팀원 중 Psychic 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_psychic_immune_count",
+    "attack_type": "Psychic",
+    "category": "immune",
+    "formula": "p2 팀원 중 Psychic 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_bug_weak_count",
+    "attack_type": "Bug",
+    "category": "weak",
+    "formula": "p2 팀원 중 Bug 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_bug_resist_count",
+    "attack_type": "Bug",
+    "category": "resist",
+    "formula": "p2 팀원 중 Bug 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_bug_immune_count",
+    "attack_type": "Bug",
+    "category": "immune",
+    "formula": "p2 팀원 중 Bug 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_rock_weak_count",
+    "attack_type": "Rock",
+    "category": "weak",
+    "formula": "p2 팀원 중 Rock 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_rock_resist_count",
+    "attack_type": "Rock",
+    "category": "resist",
+    "formula": "p2 팀원 중 Rock 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_rock_immune_count",
+    "attack_type": "Rock",
+    "category": "immune",
+    "formula": "p2 팀원 중 Rock 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_ghost_weak_count",
+    "attack_type": "Ghost",
+    "category": "weak",
+    "formula": "p2 팀원 중 Ghost 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_ghost_resist_count",
+    "attack_type": "Ghost",
+    "category": "resist",
+    "formula": "p2 팀원 중 Ghost 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_ghost_immune_count",
+    "attack_type": "Ghost",
+    "category": "immune",
+    "formula": "p2 팀원 중 Ghost 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_dragon_weak_count",
+    "attack_type": "Dragon",
+    "category": "weak",
+    "formula": "p2 팀원 중 Dragon 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_dragon_resist_count",
+    "attack_type": "Dragon",
+    "category": "resist",
+    "formula": "p2 팀원 중 Dragon 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_dragon_immune_count",
+    "attack_type": "Dragon",
+    "category": "immune",
+    "formula": "p2 팀원 중 Dragon 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_dark_weak_count",
+    "attack_type": "Dark",
+    "category": "weak",
+    "formula": "p2 팀원 중 Dark 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_dark_resist_count",
+    "attack_type": "Dark",
+    "category": "resist",
+    "formula": "p2 팀원 중 Dark 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_dark_immune_count",
+    "attack_type": "Dark",
+    "category": "immune",
+    "formula": "p2 팀원 중 Dark 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_steel_weak_count",
+    "attack_type": "Steel",
+    "category": "weak",
+    "formula": "p2 팀원 중 Steel 공격을 받을 때 최종 배율 2 또는 4인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_steel_resist_count",
+    "attack_type": "Steel",
+    "category": "resist",
+    "formula": "p2 팀원 중 Steel 공격을 받을 때 최종 배율 0.5 또는 0.25인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "p2_def_steel_immune_count",
+    "attack_type": "Steel",
+    "category": "immune",
+    "formula": "p2 팀원 중 Steel 공격을 받을 때 최종 배율 0인 수 (복수 타입은 두 배율을 곱한 뒤 분류)"
+  },
+  {
+    "name": "diff_def_normal_weak_count",
+    "attack_type": "Normal",
+    "category": "weak",
+    "formula": "p1_def_normal_weak_count - p2_def_normal_weak_count"
+  },
+  {
+    "name": "diff_def_normal_resist_count",
+    "attack_type": "Normal",
+    "category": "resist",
+    "formula": "p1_def_normal_resist_count - p2_def_normal_resist_count"
+  },
+  {
+    "name": "diff_def_normal_immune_count",
+    "attack_type": "Normal",
+    "category": "immune",
+    "formula": "p1_def_normal_immune_count - p2_def_normal_immune_count"
+  },
+  {
+    "name": "diff_def_fire_weak_count",
+    "attack_type": "Fire",
+    "category": "weak",
+    "formula": "p1_def_fire_weak_count - p2_def_fire_weak_count"
+  },
+  {
+    "name": "diff_def_fire_resist_count",
+    "attack_type": "Fire",
+    "category": "resist",
+    "formula": "p1_def_fire_resist_count - p2_def_fire_resist_count"
+  },
+  {
+    "name": "diff_def_fire_immune_count",
+    "attack_type": "Fire",
+    "category": "immune",
+    "formula": "p1_def_fire_immune_count - p2_def_fire_immune_count"
+  },
+  {
+    "name": "diff_def_water_weak_count",
+    "attack_type": "Water",
+    "category": "weak",
+    "formula": "p1_def_water_weak_count - p2_def_water_weak_count"
+  },
+  {
+    "name": "diff_def_water_resist_count",
+    "attack_type": "Water",
+    "category": "resist",
+    "formula": "p1_def_water_resist_count - p2_def_water_resist_count"
+  },
+  {
+    "name": "diff_def_water_immune_count",
+    "attack_type": "Water",
+    "category": "immune",
+    "formula": "p1_def_water_immune_count - p2_def_water_immune_count"
+  },
+  {
+    "name": "diff_def_electric_weak_count",
+    "attack_type": "Electric",
+    "category": "weak",
+    "formula": "p1_def_electric_weak_count - p2_def_electric_weak_count"
+  },
+  {
+    "name": "diff_def_electric_resist_count",
+    "attack_type": "Electric",
+    "category": "resist",
+    "formula": "p1_def_electric_resist_count - p2_def_electric_resist_count"
+  },
+  {
+    "name": "diff_def_electric_immune_count",
+    "attack_type": "Electric",
+    "category": "immune",
+    "formula": "p1_def_electric_immune_count - p2_def_electric_immune_count"
+  },
+  {
+    "name": "diff_def_grass_weak_count",
+    "attack_type": "Grass",
+    "category": "weak",
+    "formula": "p1_def_grass_weak_count - p2_def_grass_weak_count"
+  },
+  {
+    "name": "diff_def_grass_resist_count",
+    "attack_type": "Grass",
+    "category": "resist",
+    "formula": "p1_def_grass_resist_count - p2_def_grass_resist_count"
+  },
+  {
+    "name": "diff_def_grass_immune_count",
+    "attack_type": "Grass",
+    "category": "immune",
+    "formula": "p1_def_grass_immune_count - p2_def_grass_immune_count"
+  },
+  {
+    "name": "diff_def_ice_weak_count",
+    "attack_type": "Ice",
+    "category": "weak",
+    "formula": "p1_def_ice_weak_count - p2_def_ice_weak_count"
+  },
+  {
+    "name": "diff_def_ice_resist_count",
+    "attack_type": "Ice",
+    "category": "resist",
+    "formula": "p1_def_ice_resist_count - p2_def_ice_resist_count"
+  },
+  {
+    "name": "diff_def_ice_immune_count",
+    "attack_type": "Ice",
+    "category": "immune",
+    "formula": "p1_def_ice_immune_count - p2_def_ice_immune_count"
+  },
+  {
+    "name": "diff_def_fighting_weak_count",
+    "attack_type": "Fighting",
+    "category": "weak",
+    "formula": "p1_def_fighting_weak_count - p2_def_fighting_weak_count"
+  },
+  {
+    "name": "diff_def_fighting_resist_count",
+    "attack_type": "Fighting",
+    "category": "resist",
+    "formula": "p1_def_fighting_resist_count - p2_def_fighting_resist_count"
+  },
+  {
+    "name": "diff_def_fighting_immune_count",
+    "attack_type": "Fighting",
+    "category": "immune",
+    "formula": "p1_def_fighting_immune_count - p2_def_fighting_immune_count"
+  },
+  {
+    "name": "diff_def_poison_weak_count",
+    "attack_type": "Poison",
+    "category": "weak",
+    "formula": "p1_def_poison_weak_count - p2_def_poison_weak_count"
+  },
+  {
+    "name": "diff_def_poison_resist_count",
+    "attack_type": "Poison",
+    "category": "resist",
+    "formula": "p1_def_poison_resist_count - p2_def_poison_resist_count"
+  },
+  {
+    "name": "diff_def_poison_immune_count",
+    "attack_type": "Poison",
+    "category": "immune",
+    "formula": "p1_def_poison_immune_count - p2_def_poison_immune_count"
+  },
+  {
+    "name": "diff_def_ground_weak_count",
+    "attack_type": "Ground",
+    "category": "weak",
+    "formula": "p1_def_ground_weak_count - p2_def_ground_weak_count"
+  },
+  {
+    "name": "diff_def_ground_resist_count",
+    "attack_type": "Ground",
+    "category": "resist",
+    "formula": "p1_def_ground_resist_count - p2_def_ground_resist_count"
+  },
+  {
+    "name": "diff_def_ground_immune_count",
+    "attack_type": "Ground",
+    "category": "immune",
+    "formula": "p1_def_ground_immune_count - p2_def_ground_immune_count"
+  },
+  {
+    "name": "diff_def_flying_weak_count",
+    "attack_type": "Flying",
+    "category": "weak",
+    "formula": "p1_def_flying_weak_count - p2_def_flying_weak_count"
+  },
+  {
+    "name": "diff_def_flying_resist_count",
+    "attack_type": "Flying",
+    "category": "resist",
+    "formula": "p1_def_flying_resist_count - p2_def_flying_resist_count"
+  },
+  {
+    "name": "diff_def_flying_immune_count",
+    "attack_type": "Flying",
+    "category": "immune",
+    "formula": "p1_def_flying_immune_count - p2_def_flying_immune_count"
+  },
+  {
+    "name": "diff_def_psychic_weak_count",
+    "attack_type": "Psychic",
+    "category": "weak",
+    "formula": "p1_def_psychic_weak_count - p2_def_psychic_weak_count"
+  },
+  {
+    "name": "diff_def_psychic_resist_count",
+    "attack_type": "Psychic",
+    "category": "resist",
+    "formula": "p1_def_psychic_resist_count - p2_def_psychic_resist_count"
+  },
+  {
+    "name": "diff_def_psychic_immune_count",
+    "attack_type": "Psychic",
+    "category": "immune",
+    "formula": "p1_def_psychic_immune_count - p2_def_psychic_immune_count"
+  },
+  {
+    "name": "diff_def_bug_weak_count",
+    "attack_type": "Bug",
+    "category": "weak",
+    "formula": "p1_def_bug_weak_count - p2_def_bug_weak_count"
+  },
+  {
+    "name": "diff_def_bug_resist_count",
+    "attack_type": "Bug",
+    "category": "resist",
+    "formula": "p1_def_bug_resist_count - p2_def_bug_resist_count"
+  },
+  {
+    "name": "diff_def_bug_immune_count",
+    "attack_type": "Bug",
+    "category": "immune",
+    "formula": "p1_def_bug_immune_count - p2_def_bug_immune_count"
+  },
+  {
+    "name": "diff_def_rock_weak_count",
+    "attack_type": "Rock",
+    "category": "weak",
+    "formula": "p1_def_rock_weak_count - p2_def_rock_weak_count"
+  },
+  {
+    "name": "diff_def_rock_resist_count",
+    "attack_type": "Rock",
+    "category": "resist",
+    "formula": "p1_def_rock_resist_count - p2_def_rock_resist_count"
+  },
+  {
+    "name": "diff_def_rock_immune_count",
+    "attack_type": "Rock",
+    "category": "immune",
+    "formula": "p1_def_rock_immune_count - p2_def_rock_immune_count"
+  },
+  {
+    "name": "diff_def_ghost_weak_count",
+    "attack_type": "Ghost",
+    "category": "weak",
+    "formula": "p1_def_ghost_weak_count - p2_def_ghost_weak_count"
+  },
+  {
+    "name": "diff_def_ghost_resist_count",
+    "attack_type": "Ghost",
+    "category": "resist",
+    "formula": "p1_def_ghost_resist_count - p2_def_ghost_resist_count"
+  },
+  {
+    "name": "diff_def_ghost_immune_count",
+    "attack_type": "Ghost",
+    "category": "immune",
+    "formula": "p1_def_ghost_immune_count - p2_def_ghost_immune_count"
+  },
+  {
+    "name": "diff_def_dragon_weak_count",
+    "attack_type": "Dragon",
+    "category": "weak",
+    "formula": "p1_def_dragon_weak_count - p2_def_dragon_weak_count"
+  },
+  {
+    "name": "diff_def_dragon_resist_count",
+    "attack_type": "Dragon",
+    "category": "resist",
+    "formula": "p1_def_dragon_resist_count - p2_def_dragon_resist_count"
+  },
+  {
+    "name": "diff_def_dragon_immune_count",
+    "attack_type": "Dragon",
+    "category": "immune",
+    "formula": "p1_def_dragon_immune_count - p2_def_dragon_immune_count"
+  },
+  {
+    "name": "diff_def_dark_weak_count",
+    "attack_type": "Dark",
+    "category": "weak",
+    "formula": "p1_def_dark_weak_count - p2_def_dark_weak_count"
+  },
+  {
+    "name": "diff_def_dark_resist_count",
+    "attack_type": "Dark",
+    "category": "resist",
+    "formula": "p1_def_dark_resist_count - p2_def_dark_resist_count"
+  },
+  {
+    "name": "diff_def_dark_immune_count",
+    "attack_type": "Dark",
+    "category": "immune",
+    "formula": "p1_def_dark_immune_count - p2_def_dark_immune_count"
+  },
+  {
+    "name": "diff_def_steel_weak_count",
+    "attack_type": "Steel",
+    "category": "weak",
+    "formula": "p1_def_steel_weak_count - p2_def_steel_weak_count"
+  },
+  {
+    "name": "diff_def_steel_resist_count",
+    "attack_type": "Steel",
+    "category": "resist",
+    "formula": "p1_def_steel_resist_count - p2_def_steel_resist_count"
+  },
+  {
+    "name": "diff_def_steel_immune_count",
+    "attack_type": "Steel",
+    "category": "immune",
+    "formula": "p1_def_steel_immune_count - p2_def_steel_immune_count"
+  }
+]
