@@ -1,8 +1,8 @@
 """Merge external tables (pokedex.csv, moves.csv) into the parsed battle files.
 
 For every battle row and every slot ({p1,p2} x slot1..6):
-  species        -> + hp, atk, def, spa, spd, spe, type1, type2        (external/pokedex.csv)
-  move1..move4   -> + 22 move attributes per move                       (external/moves.csv)
+  species        -> + hp, atk, def, spa, spd, spe, type1, type2        (data/external/pokedex.csv)
+  move1..move4   -> + 22 move attributes per move                       (data/external/moves.csv)
 A missing move (not revealed in the log) gives missing values for its 22 attributes.
 Existing columns are kept unchanged and in place; new columns are inserted right after
 the species / move column they belong to:
@@ -10,7 +10,10 @@ the species / move column they belong to:
   {side}_slot{k}_move{j}_{attr}    e.g. p1_slot1_move1_basePower
 
 Usage:
-  python3 code/merge_external.py --src data/original --out data/original/_merged zu pu ...
+  python3 initial_preparation/code/merge_external.py zu pu ...
+
+Defaults: data/datasets/parsed -> data/datasets/enriched.
+The preserved data/initial_dataset is never used as the default output.
 """
 import argparse
 from pathlib import Path
@@ -66,10 +69,11 @@ def build_layout(src_columns, dex, mv):
 
 def main():
     ap = argparse.ArgumentParser()
+    root = Path(__file__).resolve().parents[2]
     ap.add_argument("names", nargs="+")
-    ap.add_argument("--src", default="data/original")
-    ap.add_argument("--out", default="data/original/_merged")
-    ap.add_argument("--ext", default="external")
+    ap.add_argument("--src", type=Path, default=root / "data/datasets/parsed")
+    ap.add_argument("--out", type=Path, default=root / "data/datasets/enriched")
+    ap.add_argument("--ext", type=Path, default=root / "data/external")
     ap.add_argument("--batch-size", type=int, default=10000)
     ap.add_argument("--row-start", type=int, default=0, help="first source row to process")
     ap.add_argument("--row-stop", type=int, default=None, help="stop before this source row")

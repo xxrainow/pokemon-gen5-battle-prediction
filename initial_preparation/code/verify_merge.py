@@ -13,6 +13,7 @@ Checks per file:
      first 2000 CSV rows equal parquet values
 """
 import argparse, csv, random, math
+from pathlib import Path
 import pyarrow.parquet as pq
 import pyarrow.compute as pc
 import pandas as pd
@@ -37,13 +38,15 @@ def same(v, e):
 
 def main():
     ap = argparse.ArgumentParser()
+    root = Path(__file__).resolve().parents[2]
     ap.add_argument("names", nargs="+")
-    ap.add_argument("--src", default="data/original")
-    ap.add_argument("--merged", default="data/original/_merged")
+    ap.add_argument("--src", type=Path, default=root / "data/datasets/parsed")
+    ap.add_argument("--merged", type=Path, default=root / "data/datasets/enriched")
+    ap.add_argument("--ext", type=Path, default=root / "data/external")
     ap.add_argument("--sample", type=int, default=5000)
     a = ap.parse_args()
-    dex, dex_f = load("external/pokedex.csv", "species")
-    mv, mv_f = load("external/moves.csv", "move")
+    dex, dex_f = load(a.ext / "pokedex.csv", "species")
+    mv, mv_f = load(a.ext / "moves.csv", "move")
     sides, slots, moves = ("p1", "p2"), range(1, 7), range(1, 5)
     all_ok = True
     for name in a.names:
@@ -129,6 +132,8 @@ def main():
         print(f"{name}: rows={n} cols={len(cols)} value_cells_checked={checked} rows_checked={len(idx)} -> {'OK' if ok else 'FAIL'}")
         for e in errs[:10]: print("   ", e)
     print("ALL OK" if all_ok else "SOME FAILED")
+    if not all_ok:
+        raise SystemExit(1)
 
 if __name__ == "__main__":
     main()

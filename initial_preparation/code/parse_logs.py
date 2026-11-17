@@ -1,7 +1,7 @@
 """Pokemon Showdown replay log parser (Gen 5 singles).
 
 Reads a HolidayOugi/pokemon-showdown-replays parquet file and writes ONE table,
-one row per battle: <out>.{parquet,csv} plus <out>_summary.json.
+one row per battle: <out>.{parquet,csv}, with a summary in initial_preparation/reports/.
 
 Columns
   battle_id, formatid, tier, uploadtime, rating1, rating2, winner (1/2, 0 = dropped)
@@ -18,8 +18,8 @@ parse_pre_start() reads only lines before |start| (plus |win|/|tie| for the labe
 parse_in_battle() reads the rest.
 
 Usage:
-  python3 code/parse_logs.py "log/[Gen 5] ZU.parquet" --out data/zu
-  python3 code/parse_logs.py "log/[Gen 5] OU_part1.parquet" "log/[Gen 5] OU_part2.parquet" "log/[Gen 5] OU_part3.parquet" --out data/ou
+  python3 initial_preparation/code/parse_logs.py "data/raw/[Gen 5] ZU.parquet" --out data/datasets/parsed/zu
+  Parse each OU part separately as ou_part1, ou_part2, ou_part3 when preparing inputs for prepare_basic.py.
 """
 
 import argparse
@@ -427,7 +427,10 @@ def main(argv=None):
     import pyarrow as pa
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("inputs", nargs="+", help="parquet file(s) from the HF dataset")
-    ap.add_argument("--out", required=True, help="output prefix, e.g. data/zu")
+    ap.add_argument("--out", required=True, help="output prefix, e.g. data/datasets/parsed/zu")
+    ap.add_argument("--report-dir", type=Path,
+                    default=Path(__file__).resolve().parents[2] / "initial_preparation/reports",
+                    help="directory for <output name>_summary.json")
     ap.add_argument("--no-csv", action="store_true", help="write parquet only")
     ap.add_argument("--batch-size", type=int, default=20000)
     args = ap.parse_args(argv)
@@ -502,7 +505,8 @@ def main(argv=None):
         "n_columns": len(OUTPUT_COLUMNS),
         "parser_stats": dict(stats),
     }
-    with open(f"{out}_summary.json", "w") as f:
+    args.report_dir.mkdir(parents=True, exist_ok=True)
+    with (args.report_dir / f"{out.name}_summary.json").open("w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
     print(json.dumps(summary, indent=2, ensure_ascii=False))
 

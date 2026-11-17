@@ -1,7 +1,7 @@
 """7개 포맷의 종·종족값·타입 기본 표를 만든다.
 
 설치: python -m pip install pyarrow
-실행: python pokemon_2/prepare_basic.py
+실행: python preprocessing/prepare_basic.py
 
 원본은 읽기만 한다. 출력: 통합 CSV/Parquet, 포맷별 Parquet,
 제외 행 목록, 품질 보고서, 컬럼 설명. 인코딩·분할·조합 피처는 수행하지 않는다.
@@ -64,12 +64,20 @@ def write_json(path, value):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    root = Path(__file__).resolve().parent.parent
     parser.add_argument("--source", type=Path,
-                        default=Path(__file__).resolve().parent.parent / "pokemon/data/original")
+                        default=root / "data/initial_dataset")
     parser.add_argument("--output", type=Path,
-                        default=Path(__file__).resolve().parent / "data/basic_all")
+                        default=root / "data/datasets/basic")
+    parser.add_argument("--info-output", type=Path,
+                        help="설명·검증 자료 폴더. 기본값: 출력 폴더와 나란한 <출력 폴더명>_info")
     args = parser.parse_args()
+    if args.info_output is None:
+        args.info_output = args.output.parent / f"{args.output.name}_info"
+    if args.output.resolve() == args.info_output.resolve():
+        parser.error("데이터 표와 설명·검증 자료는 서로 다른 폴더에 저장해야 합니다.")
     args.output.mkdir(parents=True, exist_ok=True)
+    args.info_output.mkdir(parents=True, exist_ok=True)
 
     # 1. 승자 조건을 만족하는 경기의 ID를 모든 파일에 걸쳐 확인한다.
     # 중복 ID는 한쪽을 임의로 선택하지 않고 모든 해당 행을 별도 보관한다.
@@ -224,7 +232,7 @@ def main():
     assert not any("_move" in c or c.endswith(("_item", "_ability"))
                    or c.startswith("rating") for c in COLUMNS)
 
-    with (args.output / "excluded_rows.csv").open("w", encoding="utf-8-sig", newline="") as f:
+    with (args.info_output / "excluded_rows.csv").open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=["source_file", "source_row_zero_based",
                                                "battle_id", "formatid", "winner", "reason"])
         writer.writeheader()
@@ -241,8 +249,8 @@ def main():
               "limitations": ["type2 빈칸 유지", "범주형 인코딩 및 데이터 분할 미실시",
                               "조합 피처 미생성", "원본 파싱·도감 세대 정확성을 다시 검증한 작업은 아님"]}
     assert report["source_rows"] == expected_rows + len(quarantine)
-    write_json(args.output / "quality_report.json", report)
-    write_json(args.output / "columns.json", {"features": FEATURES, "metadata": META,
+    write_json(args.info_output / "quality_report.json", report)
+    write_json(args.info_output / "columns.json", {"features": FEATURES, "metadata": META,
                                               "target": "y", "columns_in_order": COLUMNS})
     lines = ["# 7개 포맷 기본 데이터\n",
              "종·종족값·타입 108개와 경기 ID·포맷·업로드 시각·승자·정답을 담은 113열 표다.\n",
@@ -252,7 +260,8 @@ def main():
     for r in reports:
         lines.append(f"| {r['formatid']} | {r['source_rows']:,} | {r['output_rows']:,} | "
                      f"{r['y_counts'].get('1',0):,} | {r['y_counts'].get('0',0):,} |\n")
-    lines += ["\n통합 파일은 `all_basic.parquet`, `all_basic.csv`다. 포맷별 파일은 "
+    lines += [f"\n데이터 표 저장 위치: `{args.output.resolve()}`\n",
+              "\n통합 파일은 `all_basic.parquet`, `all_basic.csv`다. 포맷별 파일은 "
               "`ubers_basic.parquet` 등이며, OU 3개 부분은 `ou_basic.parquet`로 합쳤다.\n",
               "\n`battle_id`, `formatid`, `uploadtime`, `winner`는 관리 정보이고 `y`는 정답이다. "
               "`winner`와 `y`를 모델 입력에 넣으면 안 된다. 포맷의 입력 사용 여부는 별도 결정한다.\n",
@@ -266,8 +275,9 @@ def main():
               "원본 파일은 수정하지 않았다. 상세 집계와 원본 해시는 `quality_report.json`, "
               "컬럼 목록은 `columns.json`에 있다. 저장 후 통합 Parquet와 CSV의 전체 값을 "
               "직렬화 해시로 대조했고, 포맷별 행 수와 스키마도 확인했다.\n"]
-    (args.output / "README.md").write_text("".join(lines), encoding="utf-8")
+    (args.info_output / "README.md").write_text("".join(lines), encoding="utf-8")
     print(f"완료: {expected_rows:,}행 × {len(COLUMNS)}열 / {args.output}", flush=True)
+    print(f"설명·검증 자료: {args.info_output}", flush=True)
 
 
 if __name__ == "__main__":
