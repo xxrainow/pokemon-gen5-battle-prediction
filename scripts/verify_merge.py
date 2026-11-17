@@ -38,8 +38,8 @@ def same(v, e):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("names", nargs="+")
-    ap.add_argument("--src", default="data/interim/parsed")
-    ap.add_argument("--merged", default="data/interim/enriched")
+    ap.add_argument("--src", default="data/processed/parsed")
+    ap.add_argument("--merged", default="data/processed/enriched")
     ap.add_argument("--ext", default="data/external")
     ap.add_argument("--sample", type=int, default=5000)
     a = ap.parse_args()

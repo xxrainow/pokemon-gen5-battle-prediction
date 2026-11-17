@@ -32,10 +32,10 @@ pokemon-gen5-battle-prediction/
 │   ├── README.md                 # 단계별 출처·생성 명령·보관 정책
 │   ├── external/                 # pokedex.csv, moves.csv: Git에 포함
 │   ├── raw/                      # 다운로드한 로그: Git 제외
-│   ├── interim/
-│   │   ├── parsed/               # 파싱 직후 결과: 향후 재생성, Git 제외
-│   │   └── enriched/             # 현재 pokemon/data/original: Git 제외
+│   ├── initial_dataset/          # pokemon/data/original 초기 보존본: Git 제외
 │   └── processed/
+│       ├── parsed/               # 재파싱 결과: Git 제외
+│       ├── enriched/             # 외부 정보 재결합 결과: Git 제외
 │       ├── basic/                # pokemon_2/data/basic_all의 대용량 표: Git 제외
 │       └── features/             # 향후 전체 조합 피처: Git 제외
 ├── examples/
@@ -58,7 +58,7 @@ pokemon-gen5-battle-prediction/
 | 항목 | 현재 용량 또는 상태 | 권장 보관 |
 |---|---|---|
 | 원본 로그 Parquet 9개 | 약 1.94GB | 로컬 `data/raw/`, 다운로드 스크립트는 Git |
-| 기존 전처리 Parquet·CSV 및 요약 | 약 2.41GB | 표는 로컬 `data/interim/enriched/`, 요약은 Git |
+| 기존 전처리 Parquet·CSV 및 요약 | 약 2.41GB | 표는 로컬 `data/initial_dataset/`, 요약은 Git |
 | 기본 표 및 피처 샘플 등 | 약 668MB | 전체 표는 로컬, 작은 설명·샘플·검사 결과는 Git |
 | 코드·도감·기술 CSV·정의 문서 | 작은 텍스트 파일 | Git |
 | `.DS_Store`, `.vscode/contriviewer/` | 편집기·운영체제 기록 | 업로드 제외 |

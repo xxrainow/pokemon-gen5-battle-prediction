@@ -59,12 +59,12 @@ bash scripts/log_download_gen5.sh
 작은 ZU 포맷의 파싱·결합·검사 예시입니다. 다운로드 스크립트는 전체 7개 포맷의 파일 9개를 받습니다.
 
 ```bash
-python scripts/parse_logs.py 'data/raw/[Gen 5] ZU.parquet' --out data/interim/parsed/zu
+python scripts/parse_logs.py 'data/raw/[Gen 5] ZU.parquet' --out data/processed/parsed/zu
 python scripts/merge_external.py zu
 python scripts/verify_merge.py zu
 ```
 
-기본 데이터 생성에는 9개 부분 파일 모두의 결합 결과가 필요합니다. 전체 준비 후 실행합니다.
+기본 데이터 생성은 `data/initial_dataset/`의 초기 보존본 9개를 읽습니다. 해당 폴더를 준비한 뒤 실행합니다. 로그부터 재생성한 `data/processed/enriched/`를 사용하려면 `prepare_basic.py`에 `--source data/processed/enriched`를 지정합니다.
 
 ```bash
 python scripts/prepare_basic.py

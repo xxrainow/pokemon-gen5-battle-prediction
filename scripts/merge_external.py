@@ -10,7 +10,7 @@ the species / move column they belong to:
   {side}_slot{k}_move{j}_{attr}    e.g. p1_slot1_move1_basePower
 
 Usage:
-  python3 scripts/merge_external.py --src data/interim/parsed --out data/interim/enriched zu pu ...
+  python3 scripts/merge_external.py --src data/processed/parsed --out data/processed/enriched zu pu ...
 """
 import argparse
 from pathlib import Path
@@ -67,8 +67,8 @@ def build_layout(src_columns, dex, mv):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("names", nargs="+")
-    ap.add_argument("--src", default="data/interim/parsed")
-    ap.add_argument("--out", default="data/interim/enriched")
+    ap.add_argument("--src", default="data/processed/parsed")
+    ap.add_argument("--out", default="data/processed/enriched")
     ap.add_argument("--ext", default="data/external")
     ap.add_argument("--batch-size", type=int, default=10000)
     ap.add_argument("--row-start", type=int, default=0, help="first source row to process")

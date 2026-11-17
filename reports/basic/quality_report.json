@@ -1,55 +1,55 @@
 {
   "sources": [
     {
-      "path": "data/interim/enriched/ubers.parquet",
+      "path": "data/initial_dataset/ubers.parquet",
       "sha256": "4f4ee3dfeb8fd1b5a01d418cc0cb0db633a9fc2eaebef1975cb94b80db8dd7e6",
       "rows": 90251,
       "columns": 1243
     },
     {
-      "path": "data/interim/enriched/ou_part1.parquet",
+      "path": "data/initial_dataset/ou_part1.parquet",
       "sha256": "6456b1fb71af63a66c38a86860e3048fe431594208433f8b5ee17babb570903c",
       "rows": 199954,
       "columns": 1243
     },
     {
-      "path": "data/interim/enriched/ou_part2.parquet",
+      "path": "data/initial_dataset/ou_part2.parquet",
       "sha256": "633b24482ad3daddf16ce47091061109415ca7e049e1dd77842d2a3706d57f5c",
       "rows": 199995,
       "columns": 1243
     },
     {
-      "path": "data/interim/enriched/ou_part3.parquet",
+      "path": "data/initial_dataset/ou_part3.parquet",
       "sha256": "c78ed469a8125262f2bdc93e68acb700faa4db57ef9d62f3c89ca6dd6aacbfb3",
       "rows": 199469,
       "columns": 1243
     },
     {
-      "path": "data/interim/enriched/uu.parquet",
+      "path": "data/initial_dataset/uu.parquet",
       "sha256": "7df527d3d0b283304074f2df11729c9150b00331a607ed8b17478351180283e2",
       "rows": 69883,
       "columns": 1243
     },
     {
-      "path": "data/interim/enriched/ru.parquet",
+      "path": "data/initial_dataset/ru.parquet",
       "sha256": "3c935e5ec8985ea2c0f751934215e5dc0172f8ba766fb978142b4df3e23626e8",
       "rows": 31032,
       "columns": 1243
     },
     {
-      "path": "data/interim/enriched/nu.parquet",
+      "path": "data/initial_dataset/nu.parquet",
       "sha256": "50b0bc4f023073d3f8885bd5a8113c1a1aab829085fe25a15dc866c9e4e5f90b",
       "rows": 62535,
       "columns": 1243
     },
     {
-      "path": "data/interim/enriched/pu.parquet",
+      "path": "data/initial_dataset/pu.parquet",
       "sha256": "44970c53ab0cfc119eab1818332ffa5235baa287a206fb481e13f8ea1381f97b",
       "rows": 2147,
       "columns": 1243
     },
     {
-      "path": "data/interim/enriched/zu.parquet",
+      "path": "data/initial_dataset/zu.parquet",
       "sha256": "7dad0abf9ccb830d697934cc8e1c8f717fbcbbf24b7d14ad40e924a5d0cfecaa",
       "rows": 1030,
       "columns": 1243

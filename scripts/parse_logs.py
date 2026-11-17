@@ -18,8 +18,8 @@ parse_pre_start() reads only lines before |start| (plus |win|/|tie| for the labe
 parse_in_battle() reads the rest.
 
 Usage:
-  python3 scripts/parse_logs.py "data/raw/[Gen 5] ZU.parquet" --out data/interim/parsed/zu
-  python3 scripts/parse_logs.py "data/raw/[Gen 5] OU_part1.parquet" "data/raw/[Gen 5] OU_part2.parquet" "data/raw/[Gen 5] OU_part3.parquet" --out data/interim/parsed/ou
+  python3 scripts/parse_logs.py "data/raw/[Gen 5] ZU.parquet" --out data/processed/parsed/zu
+  python3 scripts/parse_logs.py "data/raw/[Gen 5] OU_part1.parquet" "data/raw/[Gen 5] OU_part2.parquet" "data/raw/[Gen 5] OU_part3.parquet" --out data/processed/parsed/ou
 """
 
 import argparse

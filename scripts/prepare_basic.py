@@ -65,7 +65,7 @@ def write_json(path, value):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path,
-                        default=Path(__file__).resolve().parent.parent / "data/interim/enriched")
+                        default=Path(__file__).resolve().parent.parent / "data/initial_dataset")
     parser.add_argument("--output", type=Path,
                         default=Path(__file__).resolve().parent.parent / "data/processed/basic")
     args = parser.parse_args()

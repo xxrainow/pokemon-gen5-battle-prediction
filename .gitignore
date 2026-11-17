@@ -10,7 +10,7 @@ __pycache__/
 
 # Full datasets stay local. Small reference tables and examples are tracked.
 /data/raw/
-/data/interim/
+/data/initial_dataset/
 /data/processed/
 /data/archive/
 
