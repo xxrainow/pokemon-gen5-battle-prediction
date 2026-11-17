@@ -68,15 +68,17 @@ def main():
     parser.add_argument("--source", type=Path,
                         default=root / "data/initial_dataset")
     parser.add_argument("--output", type=Path,
-                        default=root / "data/datasets/basic")
+                        default=root / "data/datasets/basic",
+                        help="데이터셋 저장 폴더. 결과표는 data/, 설명·검증 자료는 info/에 저장")
     parser.add_argument("--info-output", type=Path,
-                        help="설명·검증 자료 폴더. 기본값: 출력 폴더와 나란한 <출력 폴더명>_info")
+                        help="설명·검증 자료 폴더. 기본값: <출력 폴더>/info")
     args = parser.parse_args()
+    data_dir = args.output / "data"
     if args.info_output is None:
-        args.info_output = args.output.parent / f"{args.output.name}_info"
-    if args.output.resolve() == args.info_output.resolve():
+        args.info_output = args.output / "info"
+    if data_dir.resolve() == args.info_output.resolve():
         parser.error("데이터 표와 설명·검증 자료는 서로 다른 폴더에 저장해야 합니다.")
-    args.output.mkdir(parents=True, exist_ok=True)
+    data_dir.mkdir(parents=True, exist_ok=True)
     args.info_output.mkdir(parents=True, exist_ok=True)
 
     # 1. 승자 조건을 만족하는 경기의 ID를 모든 파일에 걸쳐 확인한다.
@@ -107,8 +109,8 @@ def main():
     reports = []
     quarantine = []
     global_reasons = Counter()
-    combined_path = args.output / "all_basic.parquet"
-    csv_path = args.output / "all_basic.csv"
+    combined_path = data_dir / "all_basic.parquet"
+    csv_path = data_dir / "all_basic.csv"
     csv_digest = hashlib.sha256()
     kept_ids = set()
 
@@ -121,7 +123,7 @@ def main():
                       "y_counts": Counter(), "exclusion_reasons": Counter(),
                       "missing_required_by_column": Counter(), "single_type_slots": 0,
                       "uploadtime_null_rows": 0}
-            with pq.ParquetWriter(args.output / f"{group}_basic.parquet", SCHEMA,
+            with pq.ParquetWriter(data_dir / f"{group}_basic.parquet", SCHEMA,
                                   compression="snappy") as output:
                 for name in names:
                     pf = pq.ParquetFile(args.source / f"{name}.parquet")
@@ -225,7 +227,7 @@ def main():
         actual_digest.update(sink.getvalue().to_pybytes())
     assert actual_digest.hexdigest() == expected_digest
     for group, report in zip(SOURCES, reports):
-        part = pq.ParquetFile(args.output / f"{group}_basic.parquet")
+        part = pq.ParquetFile(data_dir / f"{group}_basic.parquet")
         assert part.metadata.num_rows == report["output_rows"]
         assert part.schema_arrow.equals(SCHEMA)
     assert len(FEATURES) == 108 and len(COLUMNS) == 113
@@ -260,7 +262,7 @@ def main():
     for r in reports:
         lines.append(f"| {r['formatid']} | {r['source_rows']:,} | {r['output_rows']:,} | "
                      f"{r['y_counts'].get('1',0):,} | {r['y_counts'].get('0',0):,} |\n")
-    lines += [f"\n데이터 표 저장 위치: `{args.output.resolve()}`\n",
+    lines += [f"\n데이터 표 저장 위치: `{data_dir.resolve()}`\n",
               "\n통합 파일은 `all_basic.parquet`, `all_basic.csv`다. 포맷별 파일은 "
               "`ubers_basic.parquet` 등이며, OU 3개 부분은 `ou_basic.parquet`로 합쳤다.\n",
               "\n`battle_id`, `formatid`, `uploadtime`, `winner`는 관리 정보이고 `y`는 정답이다. "
@@ -276,7 +278,7 @@ def main():
               "컬럼 목록은 `columns.json`에 있다. 저장 후 통합 Parquet와 CSV의 전체 값을 "
               "직렬화 해시로 대조했고, 포맷별 행 수와 스키마도 확인했다.\n"]
     (args.info_output / "README.md").write_text("".join(lines), encoding="utf-8")
-    print(f"완료: {expected_rows:,}행 × {len(COLUMNS)}열 / {args.output}", flush=True)
+    print(f"완료: {expected_rows:,}행 × {len(COLUMNS)}열 / {data_dir}", flush=True)
     print(f"설명·검증 자료: {args.info_output}", flush=True)
 
 

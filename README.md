@@ -59,23 +59,26 @@ pokemon-gen5-battle-prediction/
     │   └── moves.csv                  # 기술 정보
     ├── initial_dataset/              # 초기 가공 데이터 CSV·Parquet 18개 보존
     └── datasets/
-        ├── basic/                    # 통합·포맷별 기본 데이터 표 9개
-        ├── basic_info/
-        │   ├── README.md             # 기본 데이터셋 설명
-        │   ├── columns.json          # 입력 피처·관리 정보·정답 목록
-        │   ├── quality_report.json   # 데이터 생성·품질 검증 결과
-        │   └── excluded_rows.csv     # 제외한 경기와 이유
+        ├── basic/
+        │   ├── data/                 # 통합·포맷별 기본 데이터 표 9개
+        │   └── info/                 # 설명·검증 자료
+        │       ├── README.md         # 기본 데이터셋 설명
+        │       ├── columns.json      # 입력 피처·관리 정보·정답 목록
+        │       ├── quality_report.json # 데이터 생성·품질 검증 결과
+        │       └── excluded_rows.csv # 제외한 경기와 이유
         └── features_sample/
-            ├── stat_sample.csv
-            ├── stat_sample.parquet
-            ├── stat_definitions.json # 샘플 피처 이름·계산식
-            ├── example.md            # 샘플 경기의 계산 설명
-            └── checks.json           # 샘플 검증 결과
+            ├── data/                 # 계산한 결과표
+            │   ├── stat_sample.csv
+            │   └── stat_sample.parquet
+            └── info/                 # 설명·검증 자료
+                ├── stat_definitions.json # 샘플 피처 이름·계산식
+                ├── example.md        # 샘플 경기의 계산 설명
+                └── checks.json       # 샘플 검증 결과
 ```
 
 `initial_preparation/`에는 초기 작업의 코드와 실행 기록을, `preprocessing/`에는 이후 전처리와 조합 피처 생성 코드를 둡니다. 두 단계에서 사용하는 데이터는 공통 `data/` 아래에 역할별로 보관합니다.
 
-`data/initial_dataset/`은 기존 초기 가공 결과를 보존하는 폴더입니다. 이후 생성하는 데이터셋은 `data/datasets/` 아래에 구분해서 저장합니다. `basic/`에는 데이터 표만 두고, 설명·컬럼 정의·검증 결과·제외 목록은 `basic_info/`에 모읍니다. `features_sample/`은 전체 경기의 피처 데이터셋이 아닌, 첫 경기 한 건의 계산·검증 예시입니다.
+`data/initial_dataset/`은 기존 초기 가공 결과를 보존하는 폴더입니다. 이후 생성하는 데이터셋은 `data/datasets/` 아래에 구분해서 저장합니다. `basic/data/`에는 데이터 표를, `basic/info/`에는 설명·컬럼 정의·검증 결과·제외 목록을 모읍니다. `features_sample/`은 전체 경기의 피처 데이터셋이 아닌, 첫 경기 한 건의 계산·검증 예시입니다.
 
 위 구조는 로컬 데이터 파일을 포함합니다. `.gitignore`는 원본 로그, 초기 데이터셋, 전체 데이터셋의 CSV·Parquet를 제외하며, 참조 데이터와 설명·검증 자료, 작은 피처 샘플은 추적할 수 있도록 설정되어 있습니다. 새로 저장소를 받으면 제외된 데이터는 별도로 준비해야 합니다.
 
@@ -96,14 +99,14 @@ python preprocessing/prepare_basic.py
 python preprocessing/build_stat_sample.py
 ```
 
-기본 데이터 표는 `data/datasets/basic/`, 설명·컬럼 정의·품질 보고서·제외 목록은 `data/datasets/basic_info/`, 피처 샘플은 `data/datasets/features_sample/`에 저장됩니다. 각 명령은 같은 위치에 있는 기존 출력 파일을 덮어씁니다. 별도 결과를 만들려면 출력 경로를 지정합니다.
+기본 데이터 표는 `data/datasets/basic/data/`, 설명·컬럼 정의·품질 보고서·제외 목록은 `data/datasets/basic/info/`에 저장됩니다. 피처 샘플의 결과표는 `data/datasets/features_sample/data/`, 설명·검증 자료는 `data/datasets/features_sample/info/`에 저장됩니다. 각 명령은 같은 위치에 있는 기존 출력 파일을 덮어씁니다. 별도 결과를 만들려면 출력 경로를 지정합니다.
 
 ```bash
 python preprocessing/prepare_basic.py --output data/datasets/basic_new
 python preprocessing/build_stat_sample.py --output data/datasets/features_sample_new
 ```
 
-첫 명령의 설명·검증 자료는 `data/datasets/basic_new_info/`에 저장됩니다. 다른 위치를 원하면 `--info-output`을 지정합니다. 두 번째 명령은 기본적으로 기존 `basic/all_basic.parquet`를 읽으며, 새 기본 표를 사용하려면 `--source data/datasets/basic_new/all_basic.parquet`를 함께 지정합니다.
+첫 명령의 데이터 표는 `data/datasets/basic_new/data/`, 설명·검증 자료는 `data/datasets/basic_new/info/`에 저장됩니다. 다른 위치를 원하면 `--info-output`을 지정합니다. 두 번째 명령은 기본적으로 기존 `basic/data/all_basic.parquet`를 읽으며, 새 기본 표를 사용하려면 `--source data/datasets/basic_new/data/all_basic.parquet`를 함께 지정합니다.
 
 원본 로그부터 다시 처리하는 경우의 ZU 예시입니다. 다운로드 명령은 전체 로그 9개를 받습니다.
 
