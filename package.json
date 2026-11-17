@@ -1,0 +1,11 @@
+{
+  "name": "pokemon-gen5-battle-prediction",
+  "private": true,
+  "description": "Official Pokemon Showdown loader for Gen 5 reference data",
+  "scripts": {
+    "export:gen5-typechart": "node initial_preparation/code/export_gen5_typechart.cjs"
+  },
+  "dependencies": {
+    "pokemon-showdown": "0.11.11"
+  }
+}
