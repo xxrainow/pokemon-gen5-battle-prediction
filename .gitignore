@@ -9,7 +9,12 @@ __pycache__/
 !.env.example
 
 # Full datasets stay local. Small reference tables and examples are tracked.
-data/raw/
-data/interim/
-data/processed/
+/data/raw/
+/data/interim/
+/data/processed/
+/data/archive/
+
+# Prevent accidental uploads if the original folders are copied here.
+/pokemon/
+/pokemon_2/
 *.log
