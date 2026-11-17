@@ -1,7 +1,7 @@
 #!/bin/bash
 # Gen 5 singles 7 tiers (Ubers, OU, UU, RU, NU, PU, ZU) from
 # https://huggingface.co/datasets/HolidayOugi/pokemon-showdown-replays
-# Usage (from project root): bash scripts/download_gen5.sh [output-directory]
+# Usage (from project root): bash scripts/log_download_gen5.sh [output-directory]
 # Re-running resumes partial downloads and skips finished files.
 set -u
 OUTPUT_DIR="${1:-$(dirname "$0")/../data/raw}"

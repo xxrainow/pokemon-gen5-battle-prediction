@@ -53,7 +53,7 @@ Python 3.13에서 확인했으며, 모든 명령은 저장소 루트에서 실�
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-bash scripts/download_gen5.sh
+bash scripts/log_download_gen5.sh
 ```
 
 작은 ZU 포맷의 파싱·결합·검사 예시입니다. 다운로드 스크립트는 전체 7개 포맷의 파일 9개를 받습니다.

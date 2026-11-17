@@ -21,7 +21,7 @@ pokemon-gen5-battle-prediction/
 ├── requirements.txt
 ├── .gitignore
 ├── scripts/
-│   ├── download_gen5.sh
+│   ├── log_download_gen5.sh
 │   ├── parse_logs.py
 │   ├── merge_external.py
 │   ├── verify_merge.py
