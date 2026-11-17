@@ -26,7 +26,7 @@ HP·공격·방어·특수공격·특수방어·스피드마다 팀 평균·최�
 ## 다시 생성
 
 ```bash
-python preprocessing/build_stat_features.py
+python -m preprocessing.features.build_stat_features
 ```
 
 기존 출력이 있으면 중단한다. 다른 결과를 만들려면 --output으로 새 폴더를 지정한다. 데이터 분할·학습·평가는 아직 하지 않았다.

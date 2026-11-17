@@ -29,7 +29,7 @@
 - 7개 포맷을 같은 기준으로 정리한 **822,419경기의 기본 데이터셋** 구축
 - 포켓몬 기본 정보 108개에 경기 ID, 포맷, 업로드 시각, 승자와 정답을 포함한 113개 컬럼으로 구성
 
-능력치 요약 피처 54개와 타입 구성 피처 51개를 각각 샘플 경기에서 검증한 뒤 전체 822,419경기에 추가했습니다. 능력치만 추가한 167열 데이터셋과 타입 구성까지 추가한 218열 데이터셋을 구분해 저장합니다. 후자의 입력 후보는 기본 108개 + 능력치 54개 + 타입 구성 51개로 총 213개이며 관리 정보 4개와 정답 1개는 별도입니다. 방어 상성 피처 153개도 첫 경기 샘플에서 검증한 뒤 전체 경기에 추가해 371열 데이터셋을 만들었습니다. 이 데이터셋의 입력 후보는 213개 + 방어 상성 153개 = 366개입니다. 모델 학습과 성능 평가는 아직 수행하지 않았습니다.
+능력치 요약 피처 54개와 타입 구성 피처 51개를 각각 샘플 경기에서 검증한 뒤 전체 822,419경기에 추가했습니다. 능력치만 추가한 167열 데이터셋과 타입 구성까지 추가한 218열 데이터셋을 구분해 저장합니다. 후자의 입력 후보는 기본 108개 + 능력치 54개 + 타입 구성 51개로 총 213개이며 관리 정보 4개와 정답 1개는 별도입니다. 방어 상성 피처 153개도 첫 경기 샘플에서 검증한 뒤 전체 경기에 추가해 371열 데이터셋을 만들었습니다. 이 데이터셋의 입력 후보는 213개 + 방어 상성 153개 = 366개입니다. 대진 그룹을 유지해 학습·검증·테스트로 약 70·15·15 분할한 뒤, 종·타입·포맷을 원핫 인코딩해 각 분할의 9,205열 희소 입력 행렬과 정답을 생성했습니다. UNKNOWN 발생은 모두 0건이며 모든 행의 저장값을 대조했습니다. 모델 학습과 성능 평가는 아직 수행하지 않았습니다.
 
 ## 디렉토리 구조
 
@@ -51,16 +51,23 @@ pokemon-gen5-battle-prediction/
 │   └── reports/
 │       ├── download.log              # 다운로드 실행 기록
 │       └── *_summary.json            # 포맷·부분 파일별 파싱 요약 9개
-├── preprocessing/                    # 기본 데이터 정리·조합 피처 생성
-│   ├── prepare_basic.py
-│   ├── build_stat_sample.py
-│   ├── build_stat_features.py         # 전체 경기의 능력치 피처 생성·검증
-│   ├── build_type_sample.py           # 한 경기의 타입 구성 계산·검증
-│   ├── build_type_features.py         # 전체 경기의 타입 구성 추가·검증
-│   ├── build_matchup_sample.py        # 한 경기의 방어 상성 계산·검증
-│   ├── build_matchup_features.py      # 전체 경기의 방어 상성 추가·검증
-│   ├── split_dataset.py              # 같은 대진을 묶어 학습·검증·테스트 분할
-│   └── feature_definitions.md
+├── preprocessing/                    # 목적별 전처리 코드·정의
+│   ├── README.md                     # 폴더 역할·실행 순서
+│   ├── basic/
+│   │   └── prepare_basic.py          # move 제외 기본 표 생성
+│   ├── features/
+│   │   ├── build_stat_sample.py      # 능력치 샘플
+│   │   ├── build_stat_features.py    # 능력치 전체 적용
+│   │   ├── build_type_sample.py      # 타입 구성 샘플
+│   │   ├── build_type_features.py    # 타입 구성 전체 적용
+│   │   ├── build_matchup_sample.py   # 방어 상성 샘플
+│   │   ├── build_matchup_features.py # 방어 상성 전체 적용
+│   │   └── feature_definitions.md    # 조합 피처 정의
+│   ├── split/
+│   │   └── split_dataset.py          # 학습·검증·테스트 분할
+│   └── encoding/
+│       ├── encoding_spec.md          # 입력·인코딩 정의
+│       └── encode_dataset.py         # 고정 사전 원핫 인코딩·저장 검증
 └── data/
     ├── raw/                          # 원본 경기 로그 Parquet 9개
     ├── external/
@@ -130,7 +137,7 @@ pokemon-gen5-battle-prediction/
 
 ## 실행 방법
 
-Python 3.13에서 실행을 확인했습니다. 아래 명령은 저장소 루트 기준입니다.
+Python 3.13에서 실행을 확인했습니다. 아래 명령은 저장소 루트 기준이며, 전처리 코드는 `python -m preprocessing.<폴더>.<모듈>`로 실행합니다.
 
 ```bash
 python3 -m venv .venv
@@ -141,15 +148,15 @@ python -m pip install -r requirements.txt
 초기 보존본 `data/initial_dataset/`의 Parquet 9개가 준비되어 있다면 다음 명령으로 기본 데이터와 능력치 피처 샘플을 생성합니다.
 
 ```bash
-python preprocessing/prepare_basic.py
-python preprocessing/build_stat_sample.py
+python -m preprocessing.basic.prepare_basic
+python -m preprocessing.features.build_stat_sample
 ```
 
 기본 데이터 표는 `data/datasets/basic/data/`, 설명·컬럼 정의·품질 보고서·제외 목록은 `data/datasets/basic/info/`에 저장됩니다. 피처 샘플의 결과표는 `data/datasets/features_sample/data/`, 설명·검증 자료는 `data/datasets/features_sample/info/`에 저장됩니다. 각 명령은 같은 위치에 있는 기존 출력 파일을 덮어씁니다. 별도 결과를 만들려면 출력 경로를 지정합니다.
 
 ```bash
-python preprocessing/prepare_basic.py --output data/datasets/basic_new
-python preprocessing/build_stat_sample.py --output data/datasets/features_sample_new
+python -m preprocessing.basic.prepare_basic --output data/datasets/basic_new
+python -m preprocessing.features.build_stat_sample --output data/datasets/features_sample_new
 ```
 
 첫 명령의 데이터 표는 `data/datasets/basic_new/data/`, 설명·검증 자료는 `data/datasets/basic_new/info/`에 저장됩니다. 다른 위치를 원하면 `--info-output`을 지정합니다. 두 번째 명령은 기본적으로 기존 `basic/data/all_basic.parquet`를 읽으며, 새 기본 표를 사용하려면 `--source data/datasets/basic_new/data/all_basic.parquet`를 함께 지정합니다.
@@ -157,7 +164,7 @@ python preprocessing/build_stat_sample.py --output data/datasets/features_sample
 전체 경기의 능력치 조합 피처는 다음 명령으로 생성합니다.
 
 ```bash
-python preprocessing/build_stat_features.py
+python -m preprocessing.features.build_stat_features
 ```
 
 `basic/data/all_basic.parquet`의 기존 113열과 경기 순서를 유지하고, 샘플과 같은 계산으로 새 피처 54개를 뒤에 붙입니다. 통합 CSV·Parquet는 `stat_features/data/`, 설명·컬럼 정의·검증 결과는 `stat_features/info/`에 저장합니다. 기존 출력이 있으면 덮어쓰지 않고 중단하므로, 다시 만들 때는 `--output data/datasets/stat_features_new`처럼 새 폴더를 지정합니다.
@@ -167,7 +174,7 @@ python preprocessing/build_stat_features.py
 타입 구성은 다음 명령으로 첫 경기 한 건만 계산합니다.
 
 ```bash
-python preprocessing/build_type_sample.py
+python -m preprocessing.features.build_type_sample
 ```
 
 17개 타입별 팀원 수를 양 팀에서 세고 차이를 구해 51개 피처를 만듭니다. 복수 타입 포켓몬은 각각의 타입에 한 번씩 집계하므로, 팀별 타입 수 합계는 6보다 클 수 있습니다. 결과는 `features_sample/data/type_sample.*`, 설명·정의·검증 결과는 `features_sample/info/type_*`에 저장합니다. 실제 계산은 [타입 구성 예시](data/datasets/features_sample/info/type_example.md)에서 볼 수 있습니다. 기존 출력이 있으면 중단하므로 재실행은 `--output`으로 새 폴더를 지정합니다. 이 명령은 능력치 샘플과 전체 데이터셋을 수정하지 않습니다.
@@ -175,7 +182,7 @@ python preprocessing/build_type_sample.py
 전체 경기의 타입 구성은 다음 명령으로 추가합니다.
 
 ```bash
-python preprocessing/build_type_features.py
+python -m preprocessing.features.build_type_features
 ```
 
 기본 입력은 `stat_features/data/all_stat_features.parquet`입니다. 기존 167열을 유지하고 타입 구성 51열을 뒤에 붙여 `stat_type_features/data/`에 통합 CSV·Parquet를 저장합니다. 설명·입력 목록·검증 결과는 `stat_type_features/info/`에 저장하며, 피처 정의는 샘플의 파일을 참조합니다. 기존 출력이 있으면 중단하므로 다른 결과를 만들 때는 `--output`으로 새 폴더를 지정합니다.
@@ -215,7 +222,7 @@ npm run export:gen5-typechart
 ### 방어 상성 샘플
 
 ```bash
-python preprocessing/build_matchup_sample.py
+python -m preprocessing.features.build_matchup_sample
 ```
 
 첫 경기의 12마리마다 공격 타입 17개에 대해 받는 배율을 상성표에서 찾습니다. 복수 타입은 **두 배율을 먼저 곱한 뒤** 분류합니다. 최종 2·4배는 약점, 0.5·0.25배는 저항, 0배는 무효이며 1배는 어느 쪽에도 세지 않습니다. 예를 들어 한 타입이 2배, 다른 타입이 0.5배면 최종 1배이므로 약점으로 세지 않습니다. 팀별로 각 분류의 포켓몬 수를 세고 A팀 − B팀 차이를 더해 17 × 3 × 3 = 153개 피처를 만듭니다.
@@ -225,7 +232,7 @@ python preprocessing/build_matchup_sample.py
 ### 방어 상성 전체 적용
 
 ```bash
-python preprocessing/build_matchup_features.py
+python -m preprocessing.features.build_matchup_features
 ```
 
 기본 입력은 `stat_type_features/data/all_stat_type_features.parquet`입니다. 기존 218열의 값·순서를 유지하고 방어 상성 153열을 뒤에 붙여 `stat_type_matchup_features/data/`에 822,419행 × 371열의 CSV·Parquet를 저장합니다. 계산 규칙과 피처 이름은 샘플 코드와 공유합니다. 입력 후보는 기본 108개 + 능력치 54개 + 타입 구성 51개 + 방어 상성 153개 = 366개이며, `columns.json`의 `matchup_features`로 방어 상성만 따로 고를 수 있습니다.
@@ -235,7 +242,7 @@ python preprocessing/build_matchup_features.py
 ## 학습·검증·테스트 분할
 
 ```bash
-python preprocessing/split_dataset.py --strategy matchup
+python -m preprocessing.split.split_dataset --strategy matchup
 ```
 
 최종 조합 피처 표 `stat_type_matchup_features/data/all_stat_type_matchup_features.parquet`를 읽고, 포맷별 경기 수와 승패 비율을 고려해 약 70%·15%·15%로 나눕니다(seed 42). 같은 포맷에서 양 팀의 종 구성이 같은 경기는 팀원 순서나 양 팀 순서가 달라도 같은 분할에 둡니다. 한쪽 팀이 다른 상대와 싸운 경기는 다른 분할에 있을 수 있으므로, **처음 보는 대진**의 예측력을 평가하기 위한 분할입니다. 시간 순서에 따른 분할은 아닙니다.
@@ -243,6 +250,26 @@ python preprocessing/split_dataset.py --strategy matchup
 결과는 `data/datasets/splits/data/`의 `train`, `validation`, `test` CSV·Parquet로 저장합니다. 기존 371개 컬럼과 값을 유지하며, 인코딩·표준화는 수행하지 않습니다. 관리 정보와 `winner`·`y`를 모델 입력과 구분해야 합니다. 데이터에서 정하는 변환 규칙은 train에서만 학습하고 validation·test에는 그 규칙을 적용합니다.
 
 `splits/info/assignments.parquet`는 원본 행·경기 ID·포맷·배정 분할·대진 그룹을 기록하고, `split_report.json`은 포맷별 승패·실제 비율·원본 해시·검사 결과를 기록합니다. 모든 경기의 배정, 분할 간 경기 ID·대진 중복 없음, 기존 값 보존과 CSV·Parquet 일치를 검사합니다. 기존 출력이 있으면 중단하며, 재생성하려면 `--output data/datasets/splits_new`처럼 새 위치를 지정합니다. 큰 데이터 파일은 Git 추적 대상에서 제외됩니다.
+
+## 종·타입·포맷 인코딩
+
+```bash
+python -m preprocessing.encoding.encode_dataset
+```
+
+`splits/data/`의 세 분할에 동일한 고정 사전을 적용합니다. 종은 `pokedex.csv`, 타입은 `gen5_typechart.csv`, 포맷은 대상 7개로 목록을 고정하며, 종·타입을 슬롯별로 원핫 인코딩합니다. 두 번째 타입의 빈 값은 NONE, 사전 밖 종·타입은 UNKNOWN으로 구분합니다. 필수 범주 결측·대상 밖 포맷·숫자 결측 및 무한값은 오류로 처리합니다.
+
+현재 사전 기준 입력은 9,205열입니다. 기존 숫자 피처 330개는 표준화 없이 float32로 저장하므로 소수점에 반올림 오차가 있을 수 있습니다. `winner`·`y`는 입력에 넣지 않고 `y`를 별도로 보관하며, `battle_id`·`uploadtime`도 입력에서 제외합니다.
+
+`data/datasets/encoded/data/`에 분할별 `X_*.npz`(CSR 입력 행렬), `y_*.npy`(정답), `*_rows.parquet`(경기 대응표)를 저장합니다. `info/encoding_manifest.json`에 범주·열 순서·참조 해시, `info/quality_report.json`에 UNKNOWN 건수와 모든 행의 숫자·원핫 복원·정답·경기 ID·순서·저장값 검사를 기록합니다. 같은 위치에 출력이 있으면 중단하므로 재생성은 `--output`으로 새 폴더를 지정합니다. 큰 행렬·정답·대응표는 Git에서 제외합니다.
+
+```python
+from scipy.sparse import load_npz
+import numpy as np
+
+X_train = load_npz('data/datasets/encoded/data/X_train.npz')
+y_train = np.load('data/datasets/encoded/data/y_train.npy', allow_pickle=False)
+```
 
 ## 참고 프로젝트
 

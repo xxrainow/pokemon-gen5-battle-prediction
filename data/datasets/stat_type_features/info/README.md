@@ -27,7 +27,7 @@ winner와 y는 입력에 넣지 않는다. 관리 정보도 자동으로 학습�
 ## 다시 생성
 
 ```bash
-python preprocessing/build_type_features.py
+python -m preprocessing.features.build_type_features
 ```
 
 기존 출력이 있으면 중단한다. --output으로 새 폴더를 지정할 수 있다. 데이터 분할·모델 학습·평가는 아직 진행하지 않았다.

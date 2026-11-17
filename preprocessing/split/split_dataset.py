@@ -20,7 +20,7 @@ import pyarrow.csv as pacsv
 import pyarrow.parquet as pq
 
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[2]
 SPLITS = ("train", "validation", "test")
 SPECIES = [f"{side}_slot{k}_species" for side in ("p1", "p2") for k in range(1, 7)]
 

@@ -1,6 +1,6 @@
 """기본 데이터의 전체 경기에 능력치 조합 피처 54개를 추가한다.
 
-실행: python preprocessing/build_stat_features.py
+실행: python -m preprocessing.features.build_stat_features
 기존 basic은 읽기만 한다. stat_features/data와 info에 결과를 저장한다.
 """
 
@@ -18,12 +18,12 @@ import pyarrow.compute as pc
 import pyarrow.csv as pacsv
 import pyarrow.parquet as pq
 
-from build_stat_sample import STATS, SUMMARY, compute_features, feature_definitions, verify
-from prepare_basic import COLUMNS, FEATURES, META, SCHEMA
+from preprocessing.features.build_stat_sample import STATS, SUMMARY, compute_features, feature_definitions, verify
+from preprocessing.basic.prepare_basic import COLUMNS, FEATURES, META, SCHEMA
 
 
 STAT_FEATURES = [d["name"] for d in feature_definitions()]
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def sha256(path):
@@ -247,7 +247,7 @@ def main():
         "표본에서 슬롯 순서·팀 교환·관리 정보 및 정답 변경 검사도 통과했다. "
         "세부 결과와 원본 해시는 quality_report.json에 있다.\n\n"
         "## 다시 생성\n\n"
-        "```bash\npython preprocessing/build_stat_features.py\n```\n\n"
+        "```bash\npython -m preprocessing.features.build_stat_features\n```\n\n"
         "기존 출력이 있으면 중단한다. 다른 결과를 만들려면 --output으로 새 폴더를 지정한다. "
         "데이터 분할·학습·평가는 아직 하지 않았다.\n", encoding="utf-8")
     print(f"완료: {rows:,}경기 × {len(schema)}열; 검증 {len(checks)}개 통과", flush=True)

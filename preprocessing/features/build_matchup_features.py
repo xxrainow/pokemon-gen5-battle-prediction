@@ -1,6 +1,6 @@
 """전체 경기의 능력치·타입 구성 데이터에 방어 상성 피처 153개를 추가한다.
 
-실행: python preprocessing/build_matchup_features.py
+실행: python -m preprocessing.features.build_matchup_features
 stat_type_features를 읽고 stat_type_matchup_features/data와 info에 새 결과를 저장한다.
 계산 규칙과 피처 이름은 build_matchup_sample.py와 공유한다.
 """
@@ -17,13 +17,13 @@ import pyarrow.compute as pc
 import pyarrow.csv as pacsv
 import pyarrow.parquet as pq
 
-from build_matchup_sample import (CATEGORIES, CHART_PATH, classify, compute_features,
+from preprocessing.features.build_matchup_sample import (CATEGORIES, CHART_PATH, classify, compute_features,
                                   feature_definitions, feature_name, load_chart, verify)
-from build_stat_features import ROOT, STAT_FEATURES, display_path, sha256, write_json
-from build_type_features import INPUT_COLUMNS as STAT_INPUT_COLUMNS, TYPE_FEATURES
-from build_type_features import add_all, has_secondary
-from build_type_sample import TYPES, feature_name as type_feature_name
-from prepare_basic import FEATURES, META, SCHEMA
+from preprocessing.features.build_stat_features import ROOT, STAT_FEATURES, display_path, sha256, write_json
+from preprocessing.features.build_type_features import INPUT_COLUMNS as STAT_INPUT_COLUMNS, TYPE_FEATURES
+from preprocessing.features.build_type_features import add_all, has_secondary
+from preprocessing.features.build_type_sample import TYPES, feature_name as type_feature_name
+from preprocessing.basic.prepare_basic import FEATURES, META, SCHEMA
 
 
 MATCHUP_FEATURES = [d["name"] for d in feature_definitions()]
@@ -310,7 +310,7 @@ def main():
         f"첫·마지막 경기와 고정 난수 표본 등 {checked}경기는 샘플 코드의 행 단위 계산과 대조했다. "
         "표본에서 슬롯 순서·팀 교환·관리 정보 및 정답 변경 검사도 통과했다. "
         "원본 해시, 공격 타입별 평균 수, 검사 결과는 quality_report.json에 있다.\n\n"
-        "## 다시 생성\n\n```bash\npython preprocessing/build_matchup_features.py\n```\n\n"
+        "## 다시 생성\n\n```bash\npython -m preprocessing.features.build_matchup_features\n```\n\n"
         "기존 출력이 있으면 중단한다. --output으로 새 폴더를 지정할 수 있다. "
         "데이터 분할·모델 학습·평가는 아직 진행하지 않았다.\n", encoding="utf-8")
     print(f"완료: {rows:,}경기 × {len(schema)}열; 검증 {len(checks)}개 통과", flush=True)
