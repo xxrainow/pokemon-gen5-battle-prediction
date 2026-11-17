@@ -1,7 +1,7 @@
 """기본 표의 첫 경기에서 능력치 요약 피처 54개를 계산한다.
 
 준비: python -m pip install pyarrow
-실행: python pokemon_2/build_stat_sample.py
+실행: python preprocessing/build_stat_sample.py
 원본 기본 표는 수정하지 않는다. 전체 경기 적용은 이 샘플 확인 뒤 진행한다.
 """
 
@@ -75,9 +75,9 @@ def verify(row, result):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    root = Path(__file__).resolve().parent
-    parser.add_argument("--source", type=Path, default=root / "data/basic_all/all_basic.parquet")
-    parser.add_argument("--output", type=Path, default=root / "data/features_sample")
+    root = Path(__file__).resolve().parent.parent
+    parser.add_argument("--source", type=Path, default=root / "data/datasets/basic/all_basic.parquet")
+    parser.add_argument("--output", type=Path, default=root / "data/datasets/features_sample")
     args = parser.parse_args()
     row = next(pq.ParquetFile(args.source).iter_batches(batch_size=1)).to_pylist()[0]
     features = compute_features(row)

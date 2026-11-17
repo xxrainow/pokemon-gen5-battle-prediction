@@ -1,4 +1,9 @@
-"""Concatenate <name>.partK.parquet/.csv (K = 0,1,...) into <name>.parquet/.csv, in order."""
+"""Concatenate <name>.partK.parquet/.csv (K = 0,1,...) into <name>.parquet/.csv, in order.
+
+Usage (explicit output directory, relative to the working directory):
+  python initial_preparation/code/combine_parts.py data/datasets/enriched zu
+This joins processing chunks named zu.part0, zu.part1, etc., not OU source parts.
+"""
 import sys, glob, re
 import pyarrow.parquet as pq
 
