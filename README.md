@@ -59,6 +59,7 @@ pokemon-gen5-battle-prediction/
 │   ├── build_type_features.py         # 전체 경기의 타입 구성 추가·검증
 │   ├── build_matchup_sample.py        # 한 경기의 방어 상성 계산·검증
 │   ├── build_matchup_features.py      # 전체 경기의 방어 상성 추가·검증
+│   ├── split_dataset.py              # 같은 대진을 묶어 학습·검증·테스트 분할
 │   └── feature_definitions.md
 └── data/
     ├── raw/                          # 원본 경기 로그 Parquet 9개
@@ -230,6 +231,18 @@ python preprocessing/build_matchup_features.py
 기본 입력은 `stat_type_features/data/all_stat_type_features.parquet`입니다. 기존 218열의 값·순서를 유지하고 방어 상성 153열을 뒤에 붙여 `stat_type_matchup_features/data/`에 822,419행 × 371열의 CSV·Parquet를 저장합니다. 계산 규칙과 피처 이름은 샘플 코드와 공유합니다. 입력 후보는 기본 108개 + 능력치 54개 + 타입 구성 51개 + 방어 상성 153개 = 366개이며, `columns.json`의 `matchup_features`로 방어 상성만 따로 고를 수 있습니다.
 
 모든 경기에서 기존 218열과 순서 보존, 수 0~6·차이 −6~6, 공격 타입별 약점·저항·무효 합계 6 이하, CSV·Parquet 전체 값 일치를 검사합니다. 타입만 기준이면 무효는 정해진 타입에서만 생기므로(예: 땅 공격 → 비행), 모든 경기의 무효 수를 타입 구성 피처와도 대조합니다. 첫·마지막 경기와 고정 난수 표본 102경기는 샘플 코드의 행 단위 계산과 대조하고 슬롯 순서·팀 교환·관리 정보 및 정답 변경도 확인합니다. 공격 타입별 팀 평균 수는 `quality_report.json`에 기록합니다. 기존 출력이 있으면 중단하므로 다시 만들 때는 `--output`으로 새 폴더를 지정합니다.
+
+## 학습·검증·테스트 분할
+
+```bash
+python preprocessing/split_dataset.py --strategy matchup
+```
+
+최종 조합 피처 표 `stat_type_matchup_features/data/all_stat_type_matchup_features.parquet`를 읽고, 포맷별 경기 수와 승패 비율을 고려해 약 70%·15%·15%로 나눕니다(seed 42). 같은 포맷에서 양 팀의 종 구성이 같은 경기는 팀원 순서나 양 팀 순서가 달라도 같은 분할에 둡니다. 한쪽 팀이 다른 상대와 싸운 경기는 다른 분할에 있을 수 있으므로, **처음 보는 대진**의 예측력을 평가하기 위한 분할입니다. 시간 순서에 따른 분할은 아닙니다.
+
+결과는 `data/datasets/splits/data/`의 `train`, `validation`, `test` CSV·Parquet로 저장합니다. 기존 371개 컬럼과 값을 유지하며, 인코딩·표준화는 수행하지 않습니다. 관리 정보와 `winner`·`y`를 모델 입력과 구분해야 합니다. 데이터에서 정하는 변환 규칙은 train에서만 학습하고 validation·test에는 그 규칙을 적용합니다.
+
+`splits/info/assignments.parquet`는 원본 행·경기 ID·포맷·배정 분할·대진 그룹을 기록하고, `split_report.json`은 포맷별 승패·실제 비율·원본 해시·검사 결과를 기록합니다. 모든 경기의 배정, 분할 간 경기 ID·대진 중복 없음, 기존 값 보존과 CSV·Parquet 일치를 검사합니다. 기존 출력이 있으면 중단하며, 재생성하려면 `--output data/datasets/splits_new`처럼 새 위치를 지정합니다. 큰 데이터 파일은 Git 추적 대상에서 제외됩니다.
 
 ## 참고 프로젝트
 
