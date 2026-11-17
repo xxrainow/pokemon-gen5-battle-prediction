@@ -11,7 +11,7 @@
 | gen5pu | 2,147 | 2,114 | 1,039 | 1,075 |
 | gen5zu | 1,030 | 1,023 | 507 | 516 |
 
-데이터 표는 `../basic/`에 있다. 통합 파일은 `all_basic.parquet`, `all_basic.csv`다. 포맷별 파일은 `ubers_basic.parquet` 등이며, OU 3개 부분은 `ou_basic.parquet`로 합쳤다.
+데이터 표는 `../data/`에 있다. 통합 파일은 `all_basic.parquet`, `all_basic.csv`다. 포맷별 파일은 `ubers_basic.parquet` 등이며, OU 3개 부분은 `ou_basic.parquet`로 합쳤다.
 
 `battle_id`, `formatid`, `uploadtime`, `winner`는 관리 정보이고 `y`는 정답이다. `winner`와 `y`를 모델 입력에 넣으면 안 된다. 포맷의 입력 사용 여부는 별도 결정한다.
 

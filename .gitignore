@@ -11,5 +11,5 @@ __pycache__/
 /data/initial_dataset/
 /data/datasets/**/*.csv
 /data/datasets/**/*.parquet
-!/data/datasets/features_sample/*.csv
-!/data/datasets/features_sample/*.parquet
+!/data/datasets/features_sample/data/*.csv
+!/data/datasets/features_sample/data/*.parquet

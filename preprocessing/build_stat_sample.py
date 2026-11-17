@@ -76,8 +76,9 @@ def verify(row, result):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     root = Path(__file__).resolve().parent.parent
-    parser.add_argument("--source", type=Path, default=root / "data/datasets/basic/all_basic.parquet")
-    parser.add_argument("--output", type=Path, default=root / "data/datasets/features_sample")
+    parser.add_argument("--source", type=Path, default=root / "data/datasets/basic/data/all_basic.parquet")
+    parser.add_argument("--output", type=Path, default=root / "data/datasets/features_sample",
+                        help="샘플 저장 폴더. 결과표는 data/, 설명·검증 자료는 info/에 저장")
     args = parser.parse_args()
     row = next(pq.ParquetFile(args.source).iter_batches(batch_size=1)).to_pylist()[0]
     features = compute_features(row)
@@ -87,15 +88,18 @@ def main():
     output_schema = pa.schema([
         pa.field(name, pa.string() if name in ("battle_id", "formatid") else pa.int64())
         for name in META] + [pa.field(name, pa.float64()) for name in features])
-    args.output.mkdir(parents=True, exist_ok=True)
+    data_dir = args.output / "data"
+    info_dir = args.output / "info"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    info_dir.mkdir(parents=True, exist_ok=True)
     table = pa.Table.from_pylist([output_row], schema=output_schema)
-    pq.write_table(table, args.output / "stat_sample.parquet")
-    with (args.output / "stat_sample.csv").open("w", encoding="utf-8-sig", newline="") as f:
+    pq.write_table(table, data_dir / "stat_sample.parquet")
+    with (data_dir / "stat_sample.csv").open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=list(output_row))
         writer.writeheader()
         writer.writerow(output_row)
-    assert pq.read_table(args.output / "stat_sample.parquet").equals(table)
-    with (args.output / "stat_sample.csv").open(encoding="utf-8-sig", newline="") as f:
+    assert pq.read_table(data_dir / "stat_sample.parquet").equals(table)
+    with (data_dir / "stat_sample.csv").open(encoding="utf-8-sig", newline="") as f:
         exported = next(csv.DictReader(f))
     assert all(exported[k] == str(v) for k, v in output_row.items())
     checks["parquet_and_csv_roundtrip"] = "passed"
@@ -110,9 +114,9 @@ def main():
                 definitions.append({"name": name, "stat": stat, "summary": summary,
                                     "formula": formulas[summary] if side != "diff" else
                                     f"p1_{stat}_{summary} - p2_{stat}_{summary}"})
-    (args.output / "stat_definitions.json").write_text(
+    (info_dir / "stat_definitions.json").write_text(
         json.dumps(definitions, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-    (args.output / "checks.json").write_text(json.dumps({
+    (info_dir / "checks.json").write_text(json.dumps({
         "source": str(args.source.resolve()), "battle_id": row["battle_id"],
         "sample_rows": 1, "feature_count": 54, "metadata_and_target_count": 5,
         "output_columns": 59, "standard_deviation_ddof": 0, "checks": checks,
@@ -144,11 +148,12 @@ def main():
                   "입력 스케일을 바꾸는 표준화와는 다른 계산이다. 실제 능력치·행동 순서·피해량을 뜻하지 않는다.\n\n",
                   "## 검사\n\n"])
     lines += [f"- {key}: {value}\n" for key, value in checks.items()]
-    (args.output / "example.md").write_text("".join(lines), encoding="utf-8")
+    (info_dir / "example.md").write_text("".join(lines), encoding="utf-8")
     print(json.dumps({"battle_id": row["battle_id"], "p1_spe_mean": features["p1_spe_mean"],
                       "p2_spe_mean": features["p2_spe_mean"], "diff_spe_mean": features["diff_spe_mean"],
                       "features": len(features), "checks": checks}, ensure_ascii=False, indent=2))
-    print("저장 위치:", args.output)
+    print("결과표:", data_dir)
+    print("설명·검증 자료:", info_dir)
 
 
 if __name__ == "__main__":

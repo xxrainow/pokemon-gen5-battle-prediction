@@ -32,9 +32,9 @@
 ## 3. 파일 구성
 
 - `preprocessing/build_stat_sample.py`: 기본 표 첫 경기에서 능력치 피처 54개를 계산하고 검증하는 코드
-- `data/datasets/features_sample/stat_sample.parquet`, `data/datasets/features_sample/stat_sample.csv`: 첫 경기의 피처와 관리 정보·정답. 1행 × 59열
-- `data/datasets/features_sample/stat_definitions.json`: 실제 54개 피처 이름과 계산식
-- `data/datasets/features_sample/example.md`: 입력 팀원과 결과를 사람이 읽기 좋게 펼친 예시
-- `data/datasets/features_sample/checks.json`: 별도 계산·슬롯 순서·팀 교환·저장값 검사 결과
+- `data/datasets/features_sample/data/stat_sample.parquet`, `data/datasets/features_sample/data/stat_sample.csv`: 첫 경기의 피처와 관리 정보·정답. 1행 × 59열
+- `data/datasets/features_sample/info/stat_definitions.json`: 실제 54개 피처 이름과 계산식
+- `data/datasets/features_sample/info/example.md`: 입력 팀원과 결과를 사람이 읽기 좋게 펼친 예시
+- `data/datasets/features_sample/info/checks.json`: 별도 계산·슬롯 순서·팀 교환·저장값 검사 결과
 
 샘플의 관리 정보·정답은 `battle_id`, `formatid`, `uploadtime`, `winner`, `y`다. `winner`와 `y`를 모델 입력으로 사용하지 않는다. 기본 데이터 표는 수정하지 않는다.
