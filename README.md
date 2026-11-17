@@ -34,3 +34,41 @@
 ## 참고 프로젝트
 
 [FutureSightML](https://github.com/HotHams/FutureSightML)의 팀 구성 기반 승률 예측 접근과 피처 설계를 참고합니다.
+
+## 저장소 구성
+
+- `scripts/`: 로그 다운로드·파싱·외부 정보 결합·기본 데이터 생성 코드
+- `data/external/`: 도감 및 기술 정보 CSV 스냅샷
+- `reports/basic/`: 기본 데이터 품질 보고서와 컬럼 목록
+- `examples/stat_sample/`: 첫 경기의 능력치 피처 54개와 검증 결과
+- `docs/feature_definitions.md`: 피처 계산식과 다음 구현 후보
+
+전체 로그와 전처리 데이터는 Git에 포함하지 않습니다. 데이터 경로와 보관 기준은 [데이터 안내](data/README.md)에 정리했습니다.
+
+## 실행
+
+Python 3.13에서 확인했으며, 모든 명령은 저장소 루트에서 실행합니다.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+bash scripts/download_gen5.sh
+```
+
+작은 ZU 포맷의 파싱·결합·검사 예시입니다. 다운로드 스크립트는 전체 7개 포맷의 파일 9개를 받습니다.
+
+```bash
+python scripts/parse_logs.py 'data/raw/[Gen 5] ZU.parquet' --out data/interim/parsed/zu
+python scripts/merge_external.py zu
+python scripts/verify_merge.py zu
+```
+
+기본 데이터 생성에는 9개 부분 파일 모두의 결합 결과가 필요합니다. 전체 준비 후 실행합니다.
+
+```bash
+python scripts/prepare_basic.py
+python scripts/build_stat_sample.py
+```
+
+기존 기본 데이터가 있다면 `data/processed/basic/all_basic.parquet`에 두고 마지막 명령만 실행해도 됩니다. 로컬 파일을 가져온 이번 작업에서는 ZU 파싱·결합 검사와 기존 기본 표를 사용한 피처 샘플 재실행을 확인했습니다. 전체 822,419경기 재생성은 수행하지 않았습니다. 과거 중간 데이터와 현재 코드의 행 수 차이 등 재현상의 한계는 [통합 조사 기록](docs/import-plan.md)에 정리했습니다.
