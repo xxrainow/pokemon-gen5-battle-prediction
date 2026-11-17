@@ -1,0 +1,23 @@
+{
+  "inputs": [
+    "log/[Gen 5] RU.parquet"
+  ],
+  "battles_total": 31033,
+  "battles_valid": 30325,
+  "drop_reasons": {
+    "no_start": 157,
+    "not_6v6_preview": 317,
+    "unknown_winner": 19,
+    "tie": 215
+  },
+  "valid_p1_win_rate": 0.4937,
+  "valid_rating_both": 142,
+  "valid_rating_none": 30183,
+  "avg_moves_revealed_per_pokemon": 1.573,
+  "item_revealed_rate": 0.4094,
+  "ability_revealed_rate": 0.1394,
+  "n_columns": 91,
+  "parser_stats": {
+    "illusion_fix": 6
+  }
+}

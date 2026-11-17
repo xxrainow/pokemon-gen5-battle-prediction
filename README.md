@@ -31,6 +31,54 @@
 
 현재 능력치 요약 피처를 정의하고 샘플 경기에서 계산을 검증했으며, 타입 구성·방어 상성 피처와 전체 데이터 적용을 진행할 예정입니다. 모델 학습과 성능 평가는 아직 수행하지 않았습니다.
 
+## 디렉토리 구조
+
+```text
+pokemon-gen5-battle-prediction/
+├── README.md
+├── .gitignore
+├── requirements.txt
+├── initial_preparation/              # 초기 데이터 수집·가공 작업
+│   ├── code/
+│   │   ├── log_download_gen5.sh      # 원본 경기 로그 다운로드
+│   │   ├── parse_logs.py             # 경기 로그 파싱
+│   │   ├── merge_external.py         # 도감·기술 정보 결합
+│   │   ├── verify_merge.py           # 결합 결과 검증
+│   │   └── combine_parts.py          # 분할 결과 파일 통합
+│   └── reports/
+│       ├── download.log              # 다운로드 실행 기록
+│       └── *_summary.json            # 포맷·부분 파일별 파싱 요약 9개
+├── preprocessing/                    # 기본 데이터 정리·조합 피처 생성
+│   ├── prepare_basic.py
+│   ├── build_stat_sample.py
+│   └── feature_definitions.md
+└── data/
+    ├── raw/                          # 원본 경기 로그 Parquet 9개
+    ├── external/
+    │   ├── pokedex.csv                # 포켓몬 종족값·타입
+    │   └── moves.csv                  # 기술 정보
+    ├── initial_dataset/              # 초기 가공 데이터 CSV·Parquet 18개 보존
+    └── datasets/
+        ├── basic/                    # 통합·포맷별 기본 데이터 표 9개
+        ├── basic_info/
+        │   ├── README.md             # 기본 데이터셋 설명
+        │   ├── columns.json          # 입력 피처·관리 정보·정답 목록
+        │   ├── quality_report.json   # 데이터 생성·품질 검증 결과
+        │   └── excluded_rows.csv     # 제외한 경기와 이유
+        └── features_sample/
+            ├── stat_sample.csv
+            ├── stat_sample.parquet
+            ├── stat_definitions.json # 샘플 피처 이름·계산식
+            ├── example.md            # 샘플 경기의 계산 설명
+            └── checks.json           # 샘플 검증 결과
+```
+
+`initial_preparation/`에는 초기 작업의 코드와 실행 기록을, `preprocessing/`에는 이후 전처리와 조합 피처 생성 코드를 둡니다. 두 단계에서 사용하는 데이터는 공통 `data/` 아래에 역할별로 보관합니다.
+
+`data/initial_dataset/`은 기존 초기 가공 결과를 보존하는 폴더입니다. 이후 생성하는 데이터셋은 `data/datasets/` 아래에 구분해서 저장합니다. `basic/`에는 데이터 표만 두고, 설명·컬럼 정의·검증 결과·제외 목록은 `basic_info/`에 모읍니다. `features_sample/`은 전체 경기의 피처 데이터셋이 아닌, 첫 경기 한 건의 계산·검증 예시입니다.
+
+위 구조는 로컬 데이터 파일을 포함합니다. `.gitignore`는 원본 로그, 초기 데이터셋, 전체 데이터셋의 CSV·Parquet를 제외하며, 참조 데이터와 설명·검증 자료, 작은 피처 샘플은 추적할 수 있도록 설정되어 있습니다. 새로 저장소를 받으면 제외된 데이터는 별도로 준비해야 합니다.
+
 ## 참고 프로젝트
 
 [FutureSightML](https://github.com/HotHams/FutureSightML)의 팀 구성 기반 승률 예측 접근과 피처 설계를 참고합니다.

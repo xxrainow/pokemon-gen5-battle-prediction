@@ -1,0 +1,23 @@
+{
+  "inputs": [
+    "log/[Gen 5] UU.parquet"
+  ],
+  "battles_total": 69883,
+  "battles_valid": 68406,
+  "drop_reasons": {
+    "not_6v6_preview": 588,
+    "no_start": 310,
+    "unknown_winner": 34,
+    "tie": 545
+  },
+  "valid_p1_win_rate": 0.4986,
+  "valid_rating_both": 509,
+  "valid_rating_none": 67897,
+  "avg_moves_revealed_per_pokemon": 1.638,
+  "item_revealed_rate": 0.4466,
+  "ability_revealed_rate": 0.184,
+  "n_columns": 91,
+  "parser_stats": {
+    "illusion_fix": 4412
+  }
+}

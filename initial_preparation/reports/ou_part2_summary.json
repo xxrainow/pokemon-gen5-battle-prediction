@@ -1,0 +1,25 @@
+{
+  "inputs": [
+    "log/[Gen 5] OU_part2.parquet"
+  ],
+  "battles_total": 200000,
+  "battles_valid": 193521,
+  "drop_reasons": {
+    "unknown_winner": 144,
+    "tie": 1363,
+    "not_6v6_preview": 3541,
+    "no_start": 1430,
+    "no_winner": 1
+  },
+  "valid_p1_win_rate": 0.4935,
+  "valid_rating_both": 1370,
+  "valid_rating_none": 192151,
+  "avg_moves_revealed_per_pokemon": 1.496,
+  "item_revealed_rate": 0.4014,
+  "ability_revealed_rate": 0.1865,
+  "n_columns": 91,
+  "parser_stats": {
+    "illusion_fix": 5166,
+    "unresolved_ident": 3
+  }
+}
