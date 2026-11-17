@@ -29,7 +29,7 @@
 - 7개 포맷을 같은 기준으로 정리한 **822,419경기의 기본 데이터셋** 구축
 - 포켓몬 기본 정보 108개에 경기 ID, 포맷, 업로드 시각, 승자와 정답을 포함한 113개 컬럼으로 구성
 
-현재 능력치 요약 피처를 정의하고 샘플 경기에서 계산을 검증했으며, 타입 구성·방어 상성 피처와 전체 데이터 적용을 진행할 예정입니다. 모델 학습과 성능 평가는 아직 수행하지 않았습니다.
+능력치 요약 피처 54개를 샘플 경기에서 검증한 뒤 전체 822,419경기에 추가했습니다. 기존 113열을 유지한 167열 데이터셋을 별도로 저장하며, 입력 후보는 기본 피처 108개와 조합 피처 54개로 총 162개입니다. 타입 구성·방어 상성 피처는 아직 구현 전이며, 모델 학습과 성능 평가도 아직 수행하지 않았습니다.
 
 ## 디렉토리 구조
 
@@ -51,6 +51,7 @@ pokemon-gen5-battle-prediction/
 ├── preprocessing/                    # 기본 데이터 정리·조합 피처 생성
 │   ├── prepare_basic.py
 │   ├── build_stat_sample.py
+│   ├── build_stat_features.py         # 전체 경기의 능력치 피처 생성·검증
 │   └── feature_definitions.md
 └── data/
     ├── raw/                          # 원본 경기 로그 Parquet 9개
@@ -66,14 +67,22 @@ pokemon-gen5-battle-prediction/
         │       ├── columns.json      # 입력 피처·관리 정보·정답 목록
         │       ├── quality_report.json # 데이터 생성·품질 검증 결과
         │       └── excluded_rows.csv # 제외한 경기와 이유
-        └── features_sample/
-            ├── data/                 # 계산한 결과표
-            │   ├── stat_sample.csv
-            │   └── stat_sample.parquet
-            └── info/                 # 설명·검증 자료
-                ├── stat_definitions.json # 샘플 피처 이름·계산식
-                ├── example.md        # 샘플 경기의 계산 설명
-                └── checks.json       # 샘플 검증 결과
+        ├── features_sample/
+        │   ├── data/                 # 한 경기의 계산 결과표
+        │   │   ├── stat_sample.csv
+        │   │   └── stat_sample.parquet
+        │   └── info/                 # 샘플 설명·검증 자료
+        │       ├── stat_definitions.json
+        │       ├── example.md
+        │       └── checks.json
+        └── stat_features/            # 전체 경기 + 능력치 조합 피처 54개
+            ├── data/
+            │   ├── all_stat_features.csv
+            │   └── all_stat_features.parquet
+            └── info/
+                ├── README.md
+                ├── columns.json
+                └── quality_report.json
 ```
 
 `initial_preparation/`에는 초기 작업의 코드와 실행 기록을, `preprocessing/`에는 이후 전처리와 조합 피처 생성 코드를 둡니다. 두 단계에서 사용하는 데이터는 공통 `data/` 아래에 역할별로 보관합니다.
@@ -107,6 +116,16 @@ python preprocessing/build_stat_sample.py --output data/datasets/features_sample
 ```
 
 첫 명령의 데이터 표는 `data/datasets/basic_new/data/`, 설명·검증 자료는 `data/datasets/basic_new/info/`에 저장됩니다. 다른 위치를 원하면 `--info-output`을 지정합니다. 두 번째 명령은 기본적으로 기존 `basic/data/all_basic.parquet`를 읽으며, 새 기본 표를 사용하려면 `--source data/datasets/basic_new/data/all_basic.parquet`를 함께 지정합니다.
+
+전체 경기의 능력치 조합 피처는 다음 명령으로 생성합니다.
+
+```bash
+python preprocessing/build_stat_features.py
+```
+
+`basic/data/all_basic.parquet`의 기존 113열과 경기 순서를 유지하고, 샘플과 같은 계산으로 새 피처 54개를 뒤에 붙입니다. 통합 CSV·Parquet는 `stat_features/data/`, 설명·컬럼 정의·검증 결과는 `stat_features/info/`에 저장합니다. 기존 출력이 있으면 덮어쓰지 않고 중단하므로, 다시 만들 때는 `--output data/datasets/stat_features_new`처럼 새 폴더를 지정합니다.
+
+모든 경기의 기존 값과 새 피처의 결측·무한값 여부, CSV·Parquet 저장값을 검사합니다. 별도 계산과 슬롯 순서·팀 교환·관리 정보 및 정답 변경 검사는 고정 난수 표본과 첫·마지막 경기에서 수행합니다. `columns.json`에는 기본 입력 108개, 새 입력 54개, 합친 입력 162개의 목록을 구분해 기록하며 정답과 관리 정보는 입력 목록에 넣지 않습니다.
 
 원본 로그부터 다시 처리하는 경우의 ZU 예시입니다. 다운로드 명령은 전체 로그 9개를 받습니다.
 

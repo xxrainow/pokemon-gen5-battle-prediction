@@ -1,0 +1,44 @@
+{
+  "source": "data/datasets/basic/data/all_basic.parquet",
+  "source_sha256": "9a69b7dc33b0478b8e8ff5c1e37e654c894f4724306e55b6de9cdaecf9d7bb8e",
+  "output_rows": 822419,
+  "input_columns": 113,
+  "output_columns": 167,
+  "basic_feature_count": 108,
+  "added_feature_count": 54,
+  "feature_count": 162,
+  "metadata_count": 4,
+  "target": "y",
+  "standard_deviation_ddof": 0,
+  "formats": {
+    "gen5ubers": 81637,
+    "gen5ou": 578042,
+    "gen5uu": 68406,
+    "gen5ru": 30324,
+    "gen5nu": 60873,
+    "gen5pu": 2114,
+    "gen5zu": 1023
+  },
+  "independently_checked_rows": 102,
+  "sample_seed": 0,
+  "calculation_tolerance": {
+    "relative": 1e-12,
+    "absolute": 1e-10
+  },
+  "csv_body_sha256": "f48265c00c69544f046cca89269d8a13edf1dc99d38398517c135853762b0bfc",
+  "checks": {
+    "all_original_values_and_row_order_preserved": "passed",
+    "all_stat_features_finite_and_non_null": "passed",
+    "independent_sample_calculation": "passed",
+    "slot_order_invariance": "passed",
+    "team_swap_sign_check": "passed",
+    "metadata_and_target_not_used": "passed",
+    "full_csv_parquet_roundtrip": "passed",
+    "source_file_unchanged": "passed"
+  },
+  "limitations": [
+    "입력 데이터의 파싱·도감 정확성을 새로 검증하지 않음",
+    "타입 조합·방어 상성 피처 미포함",
+    "데이터 분할·모델 학습·평가 미실시"
+  ]
+}
